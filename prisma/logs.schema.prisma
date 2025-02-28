@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/logs"
+}
+
+datasource logs {
+  provider = "postgresql"
+  url      = env("LOGS_DATABASE_URL")
+}
+
+model Log {
+  id        String   @id @default(uuid())
+  message   String
+  createdAt DateTime @default(now())
+}
