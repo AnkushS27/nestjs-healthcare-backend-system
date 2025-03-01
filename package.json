@@ -6,7 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "prisma": "pnpx prisma generate --schema prisma/main.schema.prisma && pnpx prisma generate --schema prisma/logs.schema.prisma",
+    "prisma-main": "pnpx prisma generate --schema prisma/main.schema.prisma",
+    "prisma-logs": "pnpx prisma generate --schema prisma/logs.schema.prisma",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
