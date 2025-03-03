@@ -21,7 +21,7 @@ export class AuthService {
         expires.setMilliseconds(expires.getMilliseconds() + expirationMs);
 
         const tokenPayload: TokenPayload = {
-            userId: user.id.toString(),
+            userId: user.id,
         };
         const token = this.jwtService.sign(tokenPayload);
 
