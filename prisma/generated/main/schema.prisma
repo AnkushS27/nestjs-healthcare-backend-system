@@ -22,4 +22,32 @@ model User {
   role      Role     @default(PATIENT)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // Role-specific profiles
+  admin   Admin?
+  doctor  Doctor?
+  patient Patient?
+}
+
+model Admin {
+  id         String @id @default(uuid())
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String @unique
+  department String
+}
+
+model Doctor {
+  id             String @id @default(uuid())
+  user           User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String @unique
+  specialization String
+  licenseNumber  String @unique
+}
+
+model Patient {
+  id               String   @id @default(uuid())
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId           String   @unique
+  dateOfBirth      DateTime
+  emergencyContact String?
 }
