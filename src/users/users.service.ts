@@ -18,52 +18,6 @@ export class UsersService {
           name: data.name,
           role: data.role,
         },
-      });
-
-      // Create the role-specific profile based on the user's role
-      switch (data.role) {
-        case 'ADMIN':
-          if (!data.adminData) {
-            throw new UnprocessableEntityException('Admin data is required for ADMIN role');
-          }
-          await this.prismaService.admin.create({
-            data: {
-              userId: user.id,
-              department: data.adminData.department,
-            },
-          });
-          break;
-
-        case 'DOCTOR':
-          if (!data.doctorData) {
-            throw new UnprocessableEntityException('Doctor data is required for DOCTOR role');
-          }
-          await this.prismaService.doctor.create({
-            data: {
-              userId: user.id,
-              specialization: data.doctorData.specialization,
-              licenseNumber: data.doctorData.licenseNumber,
-            },
-          });
-          break;
-
-        case 'PATIENT':
-          if (!data.patientData) {
-            throw new UnprocessableEntityException('Patient data is required for PATIENT role');
-          }
-          await this.prismaService.patient.create({
-            data: {
-              userId: user.id,
-              dateOfBirth: data.patientData.dateOfBirth,
-              emergencyContact: data.patientData.emergencyContact,
-            },
-          });
-          break;
-      }
-
-      // Return the user with selected fields
-      return await this.prismaService.user.findUnique({
-        where: { id: user.id },
         select: {
           id: true,
           email: true,
@@ -71,6 +25,9 @@ export class UsersService {
           role: true,
         },
       });
+
+      // Return the created user (no role-specific profile creation here)
+      return user;
     } catch (err) {
       if (err.code === 'P2002') {
         throw new UnprocessableEntityException('Email already exists');

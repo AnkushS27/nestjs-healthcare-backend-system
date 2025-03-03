@@ -13,13 +13,4 @@ export class CreateUserRequest {
 
   @IsEnum(UserRole)
   role: UserRole;
-
-  @IsOptional()
-  adminData?: { department: string };
-
-  @IsOptional()
-  doctorData?: { specialization: string; licenseNumber: string };
-
-  @IsOptional()
-  patientData?: { dateOfBirth: Date; emergencyContact?: string };
 }

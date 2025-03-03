@@ -41,7 +41,7 @@ model Doctor {
   user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId            String    @unique
   specialization    String    
-  licenseNumber     String    @unique  
+  licenseNumber     String    @unique 
 }
 
 model Patient {
