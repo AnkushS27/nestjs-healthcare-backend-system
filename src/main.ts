@@ -3,11 +3,15 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Logger } from 'nestjs-pino';
+import * as cookieParser from 'cookie-parser'; 
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useLogger(app.get(Logger));
+
+  app.use(cookieParser()); // ✅ Add cookie parser middleware
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+
   await app.listen(app.get(ConfigService).getOrThrow('PORT'));
 }
 bootstrap();
