@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { DoctorsModule } from './doctors/doctors.module';
+import { PatientsModule } from './patients/patients.module';
 
 @Module({
   imports: [
@@ -31,7 +32,8 @@ import { DoctorsModule } from './doctors/doctors.module';
     ConfigModule.forRoot(),
     UsersModule,
     AuthModule,
-    DoctorsModule
+    DoctorsModule,
+    PatientsModule
   ],
   controllers: [],
   providers: [],
