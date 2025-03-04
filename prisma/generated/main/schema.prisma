@@ -39,6 +39,8 @@ model User {
   admin   Admin?
   doctor  Doctor?
   patient Patient?
+
+  notificationPrefs NotificationPreference?
 }
 
 model Admin {
@@ -79,7 +81,7 @@ model Appointment {
   status       AppointmentStatus @default(SCHEDULED)
   type         String            @default("Regular Checkup")
   notes        String?
-  location     String? // For ABAC later
+  location     String?
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
   reminderSent Boolean           @default(false)
@@ -121,4 +123,19 @@ model FollowUpReminder {
   completed   Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model NotificationPreference {
+  id                  String   @id @default(uuid())
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId              String   @unique
+  emailEnabled        Boolean  @default(true)
+  smsEnabled          Boolean  @default(false)
+  whatsappEnabled     Boolean  @default(false)
+  appointmentReminder Boolean  @default(true)
+  followUpReminder    Boolean  @default(true)
+  marketingEmails     Boolean  @default(false)
+  updatedAt           DateTime @updatedAt
+
+  @@map("notification_preferences")
 }

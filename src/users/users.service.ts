@@ -17,6 +17,16 @@ export class UsersService {
           password: await bcrypt.hash(data.password, 10),
           name: data.name,
           role: data.role,
+          notificationPrefs: {
+            create: {
+              emailEnabled: true,
+              smsEnabled: false,
+              whatsappEnabled: false,
+              appointmentReminder: true,
+              followUpReminder: true,
+              marketingEmails: false,
+            },
+          },
         },
         select: {
           id: true,
@@ -43,6 +53,7 @@ export class UsersService {
         admin: true,
         doctor: true,
         patient: true,
+        notificationPrefs: true,
       },
     });
   }
