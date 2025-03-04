@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { MainPrismaService } from '../prisma/main-prisma.service';
 import { CreateAppointmentRequest } from './dto/create-appointment.request';
 import { UpdateAppointmentRequest } from './dto/update-appointment.request';
+import { Prisma } from 'prisma/generated/main';
 
 @Injectable()
 export class AppointmentsService {
@@ -42,5 +43,27 @@ export class AppointmentsService {
 
   async deleteAppointment(id: string) {
     return this.prismaService.appointment.delete({ where: { id } });
+  }
+
+  async getAppointmentsByFilter(filter: Prisma.AppointmentWhereInput) {
+    return this.prismaService.appointment.findMany({
+      where: filter,
+      include: { doctor: { include: { user: true } }, patient: { include: { user: true } } },
+    });
+  }
+
+  async getAppointmentsForDateRange(start: Date, end: Date) {
+    return this.prismaService.appointment.findMany({
+      where: {
+        scheduledAt: {
+          gte: start,
+          lte: end,
+        },
+      },
+      include: {
+        doctor: { include: { user: true } }, 
+        patient: { include: { user: true } }, 
+      },
+    });
   }
 }

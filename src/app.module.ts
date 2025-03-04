@@ -9,6 +9,7 @@ import { AppointmentsModule } from './appointments/appointments.module';
 import { MedicalRecordsModule } from './medical-records/medical-records.module';
 import { AccessPoliciesModule } from './access-policies/access-policies.module';
 import { LoggingModule } from './logging/logging.module';
+import { SchedulerModule } from './scheduler/scheduler.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { LoggingModule } from './logging/logging.module';
     MedicalRecordsModule,
     AccessPoliciesModule,
     LoggingModule,
+    SchedulerModule,
   ],
   controllers: [],
   providers: [],

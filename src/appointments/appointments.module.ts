@@ -8,6 +8,7 @@ import { LoggingModule } from 'src/logging/logging.module';
 @Module({
   imports: [PrismaModule, AccessPoliciesModule, LoggingModule],
   providers: [AppointmentsService],
-  controllers: [AppointmentsController]
+  controllers: [AppointmentsController],
+  exports: [AppointmentsService]
 })
 export class AppointmentsModule {}
