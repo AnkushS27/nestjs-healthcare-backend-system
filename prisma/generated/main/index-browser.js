@@ -162,6 +162,17 @@ exports.Prisma.AppointmentScalarFieldEnum = {
   reminderSent: 'reminderSent'
 };
 
+exports.Prisma.MedicalRecordScalarFieldEnum = {
+  id: 'id',
+  patientId: 'patientId',
+  diagnosis: 'diagnosis',
+  treatment: 'treatment',
+  notes: 'notes',
+  attachments: 'attachments',
+  recordDate: 'recordDate',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -194,7 +205,8 @@ exports.Prisma.ModelName = {
   Admin: 'Admin',
   Doctor: 'Doctor',
   Patient: 'Patient',
-  Appointment: 'Appointment'
+  Appointment: 'Appointment',
+  MedicalRecord: 'MedicalRecord'
 };
 
 /**

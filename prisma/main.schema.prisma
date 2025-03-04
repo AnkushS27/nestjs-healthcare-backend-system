@@ -59,6 +59,7 @@ model Patient {
   dateOfBirth       DateTime  
   emergencyContact  String?   
   appointments      Appointment[]   // Relation to appointments
+  medicalRecords    MedicalRecord[]  // Relation to medical records
 }
 
 model Appointment {
@@ -76,4 +77,16 @@ model Appointment {
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
   reminderSent    Boolean           @default(false)
+}
+
+model MedicalRecord {
+  id          String    @id @default(uuid())
+  patient     Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  patientId   String
+  diagnosis   String
+  treatment   String
+  notes       String?
+  attachments String[]  // URLs to attachments
+  recordDate  DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
