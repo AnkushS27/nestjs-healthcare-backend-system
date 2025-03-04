@@ -15,7 +15,7 @@ export class AuthController {
     @Post('login')
     @ApiOperation({ summary: 'Log in a user and set JWT cookie' })
     @ApiBody({ schema: { example: { email: 'user@example.com', password: 'password123' } } })
-    @ApiResponse({ status: 200, description: 'Successful login, returns token payload' })
+    @ApiResponse({ status: 201, description: 'Successful login, returns token payload' })
     @ApiResponse({ status: 401, description: 'Invalid credentials' })
     login(
         @CurrentUser() user: User, 
