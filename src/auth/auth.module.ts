@@ -7,6 +7,8 @@ import { AuthService } from './auth.service';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { RolesGuard } from './guards/roles.guard';
+import { AbacGuard } from './guards/abac.guard';
+import { AccessPoliciesModule } from 'src/access-policies/access-policies.module';
 
 @Module({
   imports: [
@@ -19,8 +21,9 @@ import { RolesGuard } from './guards/roles.guard';
       }),
       inject: [ConfigService],
     }),
+    AccessPoliciesModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy, RolesGuard],
+  providers: [AuthService, LocalStrategy, JwtStrategy, RolesGuard, AbacGuard],
 })
 export class AuthModule {}

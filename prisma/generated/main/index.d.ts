@@ -43,6 +43,11 @@ export type Appointment = $Result.DefaultSelection<Prisma.$AppointmentPayload>
  * 
  */
 export type MedicalRecord = $Result.DefaultSelection<Prisma.$MedicalRecordPayload>
+/**
+ * Model AccessPolicy
+ * 
+ */
+export type AccessPolicy = $Result.DefaultSelection<Prisma.$AccessPolicyPayload>
 
 /**
  * Enums
@@ -66,6 +71,14 @@ export const AppointmentStatus: {
 
 export type AppointmentStatus = (typeof AppointmentStatus)[keyof typeof AppointmentStatus]
 
+
+export const PolicyEffect: {
+  ALLOW: 'ALLOW',
+  DENY: 'DENY'
+};
+
+export type PolicyEffect = (typeof PolicyEffect)[keyof typeof PolicyEffect]
+
 }
 
 export type Role = $Enums.Role
@@ -75,6 +88,10 @@ export const Role: typeof $Enums.Role
 export type AppointmentStatus = $Enums.AppointmentStatus
 
 export const AppointmentStatus: typeof $Enums.AppointmentStatus
+
+export type PolicyEffect = $Enums.PolicyEffect
+
+export const PolicyEffect: typeof $Enums.PolicyEffect
 
 /**
  * ##  Prisma Client ʲˢ
@@ -260,6 +277,16 @@ export class PrismaClient<
     * ```
     */
   get medicalRecord(): Prisma.MedicalRecordDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.accessPolicy`: Exposes CRUD operations for the **AccessPolicy** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AccessPolicies
+    * const accessPolicies = await prisma.accessPolicy.findMany()
+    * ```
+    */
+  get accessPolicy(): Prisma.AccessPolicyDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -705,7 +732,8 @@ export namespace Prisma {
     Doctor: 'Doctor',
     Patient: 'Patient',
     Appointment: 'Appointment',
-    MedicalRecord: 'MedicalRecord'
+    MedicalRecord: 'MedicalRecord',
+    AccessPolicy: 'AccessPolicy'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -721,7 +749,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "admin" | "doctor" | "patient" | "appointment" | "medicalRecord"
+      modelProps: "user" | "admin" | "doctor" | "patient" | "appointment" | "medicalRecord" | "accessPolicy"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1169,6 +1197,80 @@ export namespace Prisma {
           }
         }
       }
+      AccessPolicy: {
+        payload: Prisma.$AccessPolicyPayload<ExtArgs>
+        fields: Prisma.AccessPolicyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AccessPolicyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessPolicyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AccessPolicyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessPolicyPayload>
+          }
+          findFirst: {
+            args: Prisma.AccessPolicyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessPolicyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AccessPolicyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessPolicyPayload>
+          }
+          findMany: {
+            args: Prisma.AccessPolicyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessPolicyPayload>[]
+          }
+          create: {
+            args: Prisma.AccessPolicyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessPolicyPayload>
+          }
+          createMany: {
+            args: Prisma.AccessPolicyCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AccessPolicyCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessPolicyPayload>[]
+          }
+          delete: {
+            args: Prisma.AccessPolicyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessPolicyPayload>
+          }
+          update: {
+            args: Prisma.AccessPolicyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessPolicyPayload>
+          }
+          deleteMany: {
+            args: Prisma.AccessPolicyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AccessPolicyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AccessPolicyUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessPolicyPayload>[]
+          }
+          upsert: {
+            args: Prisma.AccessPolicyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessPolicyPayload>
+          }
+          aggregate: {
+            args: Prisma.AccessPolicyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAccessPolicy>
+          }
+          groupBy: {
+            args: Prisma.AccessPolicyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AccessPolicyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AccessPolicyCountArgs<ExtArgs>
+            result: $Utils.Optional<AccessPolicyCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1259,6 +1361,7 @@ export namespace Prisma {
     patient?: PatientOmit
     appointment?: AppointmentOmit
     medicalRecord?: MedicalRecordOmit
+    accessPolicy?: AccessPolicyOmit
   }
 
   /* Types for Logging */
@@ -8019,6 +8122,1041 @@ export namespace Prisma {
 
 
   /**
+   * Model AccessPolicy
+   */
+
+  export type AggregateAccessPolicy = {
+    _count: AccessPolicyCountAggregateOutputType | null
+    _min: AccessPolicyMinAggregateOutputType | null
+    _max: AccessPolicyMaxAggregateOutputType | null
+  }
+
+  export type AccessPolicyMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    effect: $Enums.PolicyEffect | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AccessPolicyMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    effect: $Enums.PolicyEffect | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AccessPolicyCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    attributes: number
+    effect: number
+    resources: number
+    actions: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AccessPolicyMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    effect?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AccessPolicyMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    effect?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AccessPolicyCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    attributes?: true
+    effect?: true
+    resources?: true
+    actions?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AccessPolicyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AccessPolicy to aggregate.
+     */
+    where?: AccessPolicyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AccessPolicies to fetch.
+     */
+    orderBy?: AccessPolicyOrderByWithRelationInput | AccessPolicyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AccessPolicyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AccessPolicies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AccessPolicies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AccessPolicies
+    **/
+    _count?: true | AccessPolicyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AccessPolicyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AccessPolicyMaxAggregateInputType
+  }
+
+  export type GetAccessPolicyAggregateType<T extends AccessPolicyAggregateArgs> = {
+        [P in keyof T & keyof AggregateAccessPolicy]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAccessPolicy[P]>
+      : GetScalarType<T[P], AggregateAccessPolicy[P]>
+  }
+
+
+
+
+  export type AccessPolicyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccessPolicyWhereInput
+    orderBy?: AccessPolicyOrderByWithAggregationInput | AccessPolicyOrderByWithAggregationInput[]
+    by: AccessPolicyScalarFieldEnum[] | AccessPolicyScalarFieldEnum
+    having?: AccessPolicyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AccessPolicyCountAggregateInputType | true
+    _min?: AccessPolicyMinAggregateInputType
+    _max?: AccessPolicyMaxAggregateInputType
+  }
+
+  export type AccessPolicyGroupByOutputType = {
+    id: string
+    name: string
+    description: string
+    attributes: JsonValue
+    effect: $Enums.PolicyEffect
+    resources: string[]
+    actions: string[]
+    createdAt: Date
+    updatedAt: Date
+    _count: AccessPolicyCountAggregateOutputType | null
+    _min: AccessPolicyMinAggregateOutputType | null
+    _max: AccessPolicyMaxAggregateOutputType | null
+  }
+
+  type GetAccessPolicyGroupByPayload<T extends AccessPolicyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AccessPolicyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AccessPolicyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AccessPolicyGroupByOutputType[P]>
+            : GetScalarType<T[P], AccessPolicyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AccessPolicySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    attributes?: boolean
+    effect?: boolean
+    resources?: boolean
+    actions?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["accessPolicy"]>
+
+  export type AccessPolicySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    attributes?: boolean
+    effect?: boolean
+    resources?: boolean
+    actions?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["accessPolicy"]>
+
+  export type AccessPolicySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    attributes?: boolean
+    effect?: boolean
+    resources?: boolean
+    actions?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["accessPolicy"]>
+
+  export type AccessPolicySelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    attributes?: boolean
+    effect?: boolean
+    resources?: boolean
+    actions?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AccessPolicyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "attributes" | "effect" | "resources" | "actions" | "createdAt" | "updatedAt", ExtArgs["result"]["accessPolicy"]>
+
+  export type $AccessPolicyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AccessPolicy"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      description: string
+      attributes: Prisma.JsonValue
+      effect: $Enums.PolicyEffect
+      resources: string[]
+      actions: string[]
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["accessPolicy"]>
+    composites: {}
+  }
+
+  type AccessPolicyGetPayload<S extends boolean | null | undefined | AccessPolicyDefaultArgs> = $Result.GetResult<Prisma.$AccessPolicyPayload, S>
+
+  type AccessPolicyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AccessPolicyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AccessPolicyCountAggregateInputType | true
+    }
+
+  export interface AccessPolicyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AccessPolicy'], meta: { name: 'AccessPolicy' } }
+    /**
+     * Find zero or one AccessPolicy that matches the filter.
+     * @param {AccessPolicyFindUniqueArgs} args - Arguments to find a AccessPolicy
+     * @example
+     * // Get one AccessPolicy
+     * const accessPolicy = await prisma.accessPolicy.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AccessPolicyFindUniqueArgs>(args: SelectSubset<T, AccessPolicyFindUniqueArgs<ExtArgs>>): Prisma__AccessPolicyClient<$Result.GetResult<Prisma.$AccessPolicyPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one AccessPolicy that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AccessPolicyFindUniqueOrThrowArgs} args - Arguments to find a AccessPolicy
+     * @example
+     * // Get one AccessPolicy
+     * const accessPolicy = await prisma.accessPolicy.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AccessPolicyFindUniqueOrThrowArgs>(args: SelectSubset<T, AccessPolicyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AccessPolicyClient<$Result.GetResult<Prisma.$AccessPolicyPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first AccessPolicy that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessPolicyFindFirstArgs} args - Arguments to find a AccessPolicy
+     * @example
+     * // Get one AccessPolicy
+     * const accessPolicy = await prisma.accessPolicy.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AccessPolicyFindFirstArgs>(args?: SelectSubset<T, AccessPolicyFindFirstArgs<ExtArgs>>): Prisma__AccessPolicyClient<$Result.GetResult<Prisma.$AccessPolicyPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first AccessPolicy that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessPolicyFindFirstOrThrowArgs} args - Arguments to find a AccessPolicy
+     * @example
+     * // Get one AccessPolicy
+     * const accessPolicy = await prisma.accessPolicy.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AccessPolicyFindFirstOrThrowArgs>(args?: SelectSubset<T, AccessPolicyFindFirstOrThrowArgs<ExtArgs>>): Prisma__AccessPolicyClient<$Result.GetResult<Prisma.$AccessPolicyPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more AccessPolicies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessPolicyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AccessPolicies
+     * const accessPolicies = await prisma.accessPolicy.findMany()
+     * 
+     * // Get first 10 AccessPolicies
+     * const accessPolicies = await prisma.accessPolicy.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const accessPolicyWithIdOnly = await prisma.accessPolicy.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AccessPolicyFindManyArgs>(args?: SelectSubset<T, AccessPolicyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessPolicyPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a AccessPolicy.
+     * @param {AccessPolicyCreateArgs} args - Arguments to create a AccessPolicy.
+     * @example
+     * // Create one AccessPolicy
+     * const AccessPolicy = await prisma.accessPolicy.create({
+     *   data: {
+     *     // ... data to create a AccessPolicy
+     *   }
+     * })
+     * 
+     */
+    create<T extends AccessPolicyCreateArgs>(args: SelectSubset<T, AccessPolicyCreateArgs<ExtArgs>>): Prisma__AccessPolicyClient<$Result.GetResult<Prisma.$AccessPolicyPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many AccessPolicies.
+     * @param {AccessPolicyCreateManyArgs} args - Arguments to create many AccessPolicies.
+     * @example
+     * // Create many AccessPolicies
+     * const accessPolicy = await prisma.accessPolicy.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AccessPolicyCreateManyArgs>(args?: SelectSubset<T, AccessPolicyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AccessPolicies and returns the data saved in the database.
+     * @param {AccessPolicyCreateManyAndReturnArgs} args - Arguments to create many AccessPolicies.
+     * @example
+     * // Create many AccessPolicies
+     * const accessPolicy = await prisma.accessPolicy.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AccessPolicies and only return the `id`
+     * const accessPolicyWithIdOnly = await prisma.accessPolicy.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AccessPolicyCreateManyAndReturnArgs>(args?: SelectSubset<T, AccessPolicyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessPolicyPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a AccessPolicy.
+     * @param {AccessPolicyDeleteArgs} args - Arguments to delete one AccessPolicy.
+     * @example
+     * // Delete one AccessPolicy
+     * const AccessPolicy = await prisma.accessPolicy.delete({
+     *   where: {
+     *     // ... filter to delete one AccessPolicy
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AccessPolicyDeleteArgs>(args: SelectSubset<T, AccessPolicyDeleteArgs<ExtArgs>>): Prisma__AccessPolicyClient<$Result.GetResult<Prisma.$AccessPolicyPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one AccessPolicy.
+     * @param {AccessPolicyUpdateArgs} args - Arguments to update one AccessPolicy.
+     * @example
+     * // Update one AccessPolicy
+     * const accessPolicy = await prisma.accessPolicy.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AccessPolicyUpdateArgs>(args: SelectSubset<T, AccessPolicyUpdateArgs<ExtArgs>>): Prisma__AccessPolicyClient<$Result.GetResult<Prisma.$AccessPolicyPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more AccessPolicies.
+     * @param {AccessPolicyDeleteManyArgs} args - Arguments to filter AccessPolicies to delete.
+     * @example
+     * // Delete a few AccessPolicies
+     * const { count } = await prisma.accessPolicy.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AccessPolicyDeleteManyArgs>(args?: SelectSubset<T, AccessPolicyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AccessPolicies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessPolicyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AccessPolicies
+     * const accessPolicy = await prisma.accessPolicy.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AccessPolicyUpdateManyArgs>(args: SelectSubset<T, AccessPolicyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AccessPolicies and returns the data updated in the database.
+     * @param {AccessPolicyUpdateManyAndReturnArgs} args - Arguments to update many AccessPolicies.
+     * @example
+     * // Update many AccessPolicies
+     * const accessPolicy = await prisma.accessPolicy.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AccessPolicies and only return the `id`
+     * const accessPolicyWithIdOnly = await prisma.accessPolicy.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AccessPolicyUpdateManyAndReturnArgs>(args: SelectSubset<T, AccessPolicyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessPolicyPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one AccessPolicy.
+     * @param {AccessPolicyUpsertArgs} args - Arguments to update or create a AccessPolicy.
+     * @example
+     * // Update or create a AccessPolicy
+     * const accessPolicy = await prisma.accessPolicy.upsert({
+     *   create: {
+     *     // ... data to create a AccessPolicy
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AccessPolicy we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AccessPolicyUpsertArgs>(args: SelectSubset<T, AccessPolicyUpsertArgs<ExtArgs>>): Prisma__AccessPolicyClient<$Result.GetResult<Prisma.$AccessPolicyPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of AccessPolicies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessPolicyCountArgs} args - Arguments to filter AccessPolicies to count.
+     * @example
+     * // Count the number of AccessPolicies
+     * const count = await prisma.accessPolicy.count({
+     *   where: {
+     *     // ... the filter for the AccessPolicies we want to count
+     *   }
+     * })
+    **/
+    count<T extends AccessPolicyCountArgs>(
+      args?: Subset<T, AccessPolicyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AccessPolicyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AccessPolicy.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessPolicyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AccessPolicyAggregateArgs>(args: Subset<T, AccessPolicyAggregateArgs>): Prisma.PrismaPromise<GetAccessPolicyAggregateType<T>>
+
+    /**
+     * Group by AccessPolicy.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessPolicyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AccessPolicyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AccessPolicyGroupByArgs['orderBy'] }
+        : { orderBy?: AccessPolicyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AccessPolicyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAccessPolicyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AccessPolicy model
+   */
+  readonly fields: AccessPolicyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AccessPolicy.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AccessPolicyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AccessPolicy model
+   */ 
+  interface AccessPolicyFieldRefs {
+    readonly id: FieldRef<"AccessPolicy", 'String'>
+    readonly name: FieldRef<"AccessPolicy", 'String'>
+    readonly description: FieldRef<"AccessPolicy", 'String'>
+    readonly attributes: FieldRef<"AccessPolicy", 'Json'>
+    readonly effect: FieldRef<"AccessPolicy", 'PolicyEffect'>
+    readonly resources: FieldRef<"AccessPolicy", 'String[]'>
+    readonly actions: FieldRef<"AccessPolicy", 'String[]'>
+    readonly createdAt: FieldRef<"AccessPolicy", 'DateTime'>
+    readonly updatedAt: FieldRef<"AccessPolicy", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AccessPolicy findUnique
+   */
+  export type AccessPolicyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessPolicy
+     */
+    select?: AccessPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessPolicy
+     */
+    omit?: AccessPolicyOmit<ExtArgs> | null
+    /**
+     * Filter, which AccessPolicy to fetch.
+     */
+    where: AccessPolicyWhereUniqueInput
+  }
+
+  /**
+   * AccessPolicy findUniqueOrThrow
+   */
+  export type AccessPolicyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessPolicy
+     */
+    select?: AccessPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessPolicy
+     */
+    omit?: AccessPolicyOmit<ExtArgs> | null
+    /**
+     * Filter, which AccessPolicy to fetch.
+     */
+    where: AccessPolicyWhereUniqueInput
+  }
+
+  /**
+   * AccessPolicy findFirst
+   */
+  export type AccessPolicyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessPolicy
+     */
+    select?: AccessPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessPolicy
+     */
+    omit?: AccessPolicyOmit<ExtArgs> | null
+    /**
+     * Filter, which AccessPolicy to fetch.
+     */
+    where?: AccessPolicyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AccessPolicies to fetch.
+     */
+    orderBy?: AccessPolicyOrderByWithRelationInput | AccessPolicyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AccessPolicies.
+     */
+    cursor?: AccessPolicyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AccessPolicies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AccessPolicies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AccessPolicies.
+     */
+    distinct?: AccessPolicyScalarFieldEnum | AccessPolicyScalarFieldEnum[]
+  }
+
+  /**
+   * AccessPolicy findFirstOrThrow
+   */
+  export type AccessPolicyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessPolicy
+     */
+    select?: AccessPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessPolicy
+     */
+    omit?: AccessPolicyOmit<ExtArgs> | null
+    /**
+     * Filter, which AccessPolicy to fetch.
+     */
+    where?: AccessPolicyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AccessPolicies to fetch.
+     */
+    orderBy?: AccessPolicyOrderByWithRelationInput | AccessPolicyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AccessPolicies.
+     */
+    cursor?: AccessPolicyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AccessPolicies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AccessPolicies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AccessPolicies.
+     */
+    distinct?: AccessPolicyScalarFieldEnum | AccessPolicyScalarFieldEnum[]
+  }
+
+  /**
+   * AccessPolicy findMany
+   */
+  export type AccessPolicyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessPolicy
+     */
+    select?: AccessPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessPolicy
+     */
+    omit?: AccessPolicyOmit<ExtArgs> | null
+    /**
+     * Filter, which AccessPolicies to fetch.
+     */
+    where?: AccessPolicyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AccessPolicies to fetch.
+     */
+    orderBy?: AccessPolicyOrderByWithRelationInput | AccessPolicyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AccessPolicies.
+     */
+    cursor?: AccessPolicyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AccessPolicies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AccessPolicies.
+     */
+    skip?: number
+    distinct?: AccessPolicyScalarFieldEnum | AccessPolicyScalarFieldEnum[]
+  }
+
+  /**
+   * AccessPolicy create
+   */
+  export type AccessPolicyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessPolicy
+     */
+    select?: AccessPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessPolicy
+     */
+    omit?: AccessPolicyOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AccessPolicy.
+     */
+    data: XOR<AccessPolicyCreateInput, AccessPolicyUncheckedCreateInput>
+  }
+
+  /**
+   * AccessPolicy createMany
+   */
+  export type AccessPolicyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AccessPolicies.
+     */
+    data: AccessPolicyCreateManyInput | AccessPolicyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AccessPolicy createManyAndReturn
+   */
+  export type AccessPolicyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessPolicy
+     */
+    select?: AccessPolicySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessPolicy
+     */
+    omit?: AccessPolicyOmit<ExtArgs> | null
+    /**
+     * The data used to create many AccessPolicies.
+     */
+    data: AccessPolicyCreateManyInput | AccessPolicyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AccessPolicy update
+   */
+  export type AccessPolicyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessPolicy
+     */
+    select?: AccessPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessPolicy
+     */
+    omit?: AccessPolicyOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AccessPolicy.
+     */
+    data: XOR<AccessPolicyUpdateInput, AccessPolicyUncheckedUpdateInput>
+    /**
+     * Choose, which AccessPolicy to update.
+     */
+    where: AccessPolicyWhereUniqueInput
+  }
+
+  /**
+   * AccessPolicy updateMany
+   */
+  export type AccessPolicyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AccessPolicies.
+     */
+    data: XOR<AccessPolicyUpdateManyMutationInput, AccessPolicyUncheckedUpdateManyInput>
+    /**
+     * Filter which AccessPolicies to update
+     */
+    where?: AccessPolicyWhereInput
+    /**
+     * Limit how many AccessPolicies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AccessPolicy updateManyAndReturn
+   */
+  export type AccessPolicyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessPolicy
+     */
+    select?: AccessPolicySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessPolicy
+     */
+    omit?: AccessPolicyOmit<ExtArgs> | null
+    /**
+     * The data used to update AccessPolicies.
+     */
+    data: XOR<AccessPolicyUpdateManyMutationInput, AccessPolicyUncheckedUpdateManyInput>
+    /**
+     * Filter which AccessPolicies to update
+     */
+    where?: AccessPolicyWhereInput
+    /**
+     * Limit how many AccessPolicies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AccessPolicy upsert
+   */
+  export type AccessPolicyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessPolicy
+     */
+    select?: AccessPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessPolicy
+     */
+    omit?: AccessPolicyOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AccessPolicy to update in case it exists.
+     */
+    where: AccessPolicyWhereUniqueInput
+    /**
+     * In case the AccessPolicy found by the `where` argument doesn't exist, create a new AccessPolicy with this data.
+     */
+    create: XOR<AccessPolicyCreateInput, AccessPolicyUncheckedCreateInput>
+    /**
+     * In case the AccessPolicy was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AccessPolicyUpdateInput, AccessPolicyUncheckedUpdateInput>
+  }
+
+  /**
+   * AccessPolicy delete
+   */
+  export type AccessPolicyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessPolicy
+     */
+    select?: AccessPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessPolicy
+     */
+    omit?: AccessPolicyOmit<ExtArgs> | null
+    /**
+     * Filter which AccessPolicy to delete.
+     */
+    where: AccessPolicyWhereUniqueInput
+  }
+
+  /**
+   * AccessPolicy deleteMany
+   */
+  export type AccessPolicyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AccessPolicies to delete
+     */
+    where?: AccessPolicyWhereInput
+    /**
+     * Limit how many AccessPolicies to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AccessPolicy without action
+   */
+  export type AccessPolicyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessPolicy
+     */
+    select?: AccessPolicySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessPolicy
+     */
+    omit?: AccessPolicyOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -8106,12 +9244,34 @@ export namespace Prisma {
   export type MedicalRecordScalarFieldEnum = (typeof MedicalRecordScalarFieldEnum)[keyof typeof MedicalRecordScalarFieldEnum]
 
 
+  export const AccessPolicyScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    attributes: 'attributes',
+    effect: 'effect',
+    resources: 'resources',
+    actions: 'actions',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AccessPolicyScalarFieldEnum = (typeof AccessPolicyScalarFieldEnum)[keyof typeof AccessPolicyScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const QueryMode: {
@@ -8128,6 +9288,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -8195,6 +9364,34 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'PolicyEffect'
+   */
+  export type EnumPolicyEffectFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PolicyEffect'>
+    
+
+
+  /**
+   * Reference to a field of type 'PolicyEffect[]'
+   */
+  export type ListEnumPolicyEffectFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PolicyEffect[]'>
     
 
 
@@ -8601,6 +9798,78 @@ export namespace Prisma {
     attachments?: StringNullableListFilter<"MedicalRecord">
     recordDate?: DateTimeWithAggregatesFilter<"MedicalRecord"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"MedicalRecord"> | Date | string
+  }
+
+  export type AccessPolicyWhereInput = {
+    AND?: AccessPolicyWhereInput | AccessPolicyWhereInput[]
+    OR?: AccessPolicyWhereInput[]
+    NOT?: AccessPolicyWhereInput | AccessPolicyWhereInput[]
+    id?: StringFilter<"AccessPolicy"> | string
+    name?: StringFilter<"AccessPolicy"> | string
+    description?: StringFilter<"AccessPolicy"> | string
+    attributes?: JsonFilter<"AccessPolicy">
+    effect?: EnumPolicyEffectFilter<"AccessPolicy"> | $Enums.PolicyEffect
+    resources?: StringNullableListFilter<"AccessPolicy">
+    actions?: StringNullableListFilter<"AccessPolicy">
+    createdAt?: DateTimeFilter<"AccessPolicy"> | Date | string
+    updatedAt?: DateTimeFilter<"AccessPolicy"> | Date | string
+  }
+
+  export type AccessPolicyOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    attributes?: SortOrder
+    effect?: SortOrder
+    resources?: SortOrder
+    actions?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccessPolicyWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: AccessPolicyWhereInput | AccessPolicyWhereInput[]
+    OR?: AccessPolicyWhereInput[]
+    NOT?: AccessPolicyWhereInput | AccessPolicyWhereInput[]
+    description?: StringFilter<"AccessPolicy"> | string
+    attributes?: JsonFilter<"AccessPolicy">
+    effect?: EnumPolicyEffectFilter<"AccessPolicy"> | $Enums.PolicyEffect
+    resources?: StringNullableListFilter<"AccessPolicy">
+    actions?: StringNullableListFilter<"AccessPolicy">
+    createdAt?: DateTimeFilter<"AccessPolicy"> | Date | string
+    updatedAt?: DateTimeFilter<"AccessPolicy"> | Date | string
+  }, "id" | "name">
+
+  export type AccessPolicyOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    attributes?: SortOrder
+    effect?: SortOrder
+    resources?: SortOrder
+    actions?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AccessPolicyCountOrderByAggregateInput
+    _max?: AccessPolicyMaxOrderByAggregateInput
+    _min?: AccessPolicyMinOrderByAggregateInput
+  }
+
+  export type AccessPolicyScalarWhereWithAggregatesInput = {
+    AND?: AccessPolicyScalarWhereWithAggregatesInput | AccessPolicyScalarWhereWithAggregatesInput[]
+    OR?: AccessPolicyScalarWhereWithAggregatesInput[]
+    NOT?: AccessPolicyScalarWhereWithAggregatesInput | AccessPolicyScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AccessPolicy"> | string
+    name?: StringWithAggregatesFilter<"AccessPolicy"> | string
+    description?: StringWithAggregatesFilter<"AccessPolicy"> | string
+    attributes?: JsonWithAggregatesFilter<"AccessPolicy">
+    effect?: EnumPolicyEffectWithAggregatesFilter<"AccessPolicy"> | $Enums.PolicyEffect
+    resources?: StringNullableListFilter<"AccessPolicy">
+    actions?: StringNullableListFilter<"AccessPolicy">
+    createdAt?: DateTimeWithAggregatesFilter<"AccessPolicy"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AccessPolicy"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -9013,6 +10282,90 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AccessPolicyCreateInput = {
+    id?: string
+    name: string
+    description: string
+    attributes: JsonNullValueInput | InputJsonValue
+    effect?: $Enums.PolicyEffect
+    resources?: AccessPolicyCreateresourcesInput | string[]
+    actions?: AccessPolicyCreateactionsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AccessPolicyUncheckedCreateInput = {
+    id?: string
+    name: string
+    description: string
+    attributes: JsonNullValueInput | InputJsonValue
+    effect?: $Enums.PolicyEffect
+    resources?: AccessPolicyCreateresourcesInput | string[]
+    actions?: AccessPolicyCreateactionsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AccessPolicyUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attributes?: JsonNullValueInput | InputJsonValue
+    effect?: EnumPolicyEffectFieldUpdateOperationsInput | $Enums.PolicyEffect
+    resources?: AccessPolicyUpdateresourcesInput | string[]
+    actions?: AccessPolicyUpdateactionsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccessPolicyUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attributes?: JsonNullValueInput | InputJsonValue
+    effect?: EnumPolicyEffectFieldUpdateOperationsInput | $Enums.PolicyEffect
+    resources?: AccessPolicyUpdateresourcesInput | string[]
+    actions?: AccessPolicyUpdateactionsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccessPolicyCreateManyInput = {
+    id?: string
+    name: string
+    description: string
+    attributes: JsonNullValueInput | InputJsonValue
+    effect?: $Enums.PolicyEffect
+    resources?: AccessPolicyCreateresourcesInput | string[]
+    actions?: AccessPolicyCreateactionsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AccessPolicyUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attributes?: JsonNullValueInput | InputJsonValue
+    effect?: EnumPolicyEffectFieldUpdateOperationsInput | $Enums.PolicyEffect
+    resources?: AccessPolicyUpdateresourcesInput | string[]
+    actions?: AccessPolicyUpdateactionsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AccessPolicyUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    attributes?: JsonNullValueInput | InputJsonValue
+    effect?: EnumPolicyEffectFieldUpdateOperationsInput | $Enums.PolicyEffect
+    resources?: AccessPolicyUpdateresourcesInput | string[]
+    actions?: AccessPolicyUpdateactionsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -9379,6 +10732,102 @@ export namespace Prisma {
     recordDate?: SortOrder
     updatedAt?: SortOrder
   }
+  export type JsonFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type EnumPolicyEffectFilter<$PrismaModel = never> = {
+    equals?: $Enums.PolicyEffect | EnumPolicyEffectFieldRefInput<$PrismaModel>
+    in?: $Enums.PolicyEffect[] | ListEnumPolicyEffectFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PolicyEffect[] | ListEnumPolicyEffectFieldRefInput<$PrismaModel>
+    not?: NestedEnumPolicyEffectFilter<$PrismaModel> | $Enums.PolicyEffect
+  }
+
+  export type AccessPolicyCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    attributes?: SortOrder
+    effect?: SortOrder
+    resources?: SortOrder
+    actions?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccessPolicyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    effect?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AccessPolicyMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    effect?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type EnumPolicyEffectWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PolicyEffect | EnumPolicyEffectFieldRefInput<$PrismaModel>
+    in?: $Enums.PolicyEffect[] | ListEnumPolicyEffectFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PolicyEffect[] | ListEnumPolicyEffectFieldRefInput<$PrismaModel>
+    not?: NestedEnumPolicyEffectWithAggregatesFilter<$PrismaModel> | $Enums.PolicyEffect
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPolicyEffectFilter<$PrismaModel>
+    _max?: NestedEnumPolicyEffectFilter<$PrismaModel>
+  }
 
   export type AdminCreateNestedOneWithoutUserInput = {
     create?: XOR<AdminCreateWithoutUserInput, AdminUncheckedCreateWithoutUserInput>
@@ -9719,6 +11168,28 @@ export namespace Prisma {
     update?: XOR<XOR<PatientUpdateToOneWithWhereWithoutMedicalRecordsInput, PatientUpdateWithoutMedicalRecordsInput>, PatientUncheckedUpdateWithoutMedicalRecordsInput>
   }
 
+  export type AccessPolicyCreateresourcesInput = {
+    set: string[]
+  }
+
+  export type AccessPolicyCreateactionsInput = {
+    set: string[]
+  }
+
+  export type EnumPolicyEffectFieldUpdateOperationsInput = {
+    set?: $Enums.PolicyEffect
+  }
+
+  export type AccessPolicyUpdateresourcesInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type AccessPolicyUpdateactionsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -9873,6 +11344,46 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedEnumPolicyEffectFilter<$PrismaModel = never> = {
+    equals?: $Enums.PolicyEffect | EnumPolicyEffectFieldRefInput<$PrismaModel>
+    in?: $Enums.PolicyEffect[] | ListEnumPolicyEffectFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PolicyEffect[] | ListEnumPolicyEffectFieldRefInput<$PrismaModel>
+    not?: NestedEnumPolicyEffectFilter<$PrismaModel> | $Enums.PolicyEffect
+  }
+  export type NestedJsonFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedEnumPolicyEffectWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PolicyEffect | EnumPolicyEffectFieldRefInput<$PrismaModel>
+    in?: $Enums.PolicyEffect[] | ListEnumPolicyEffectFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PolicyEffect[] | ListEnumPolicyEffectFieldRefInput<$PrismaModel>
+    not?: NestedEnumPolicyEffectWithAggregatesFilter<$PrismaModel> | $Enums.PolicyEffect
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPolicyEffectFilter<$PrismaModel>
+    _max?: NestedEnumPolicyEffectFilter<$PrismaModel>
   }
 
   export type AdminCreateWithoutUserInput = {

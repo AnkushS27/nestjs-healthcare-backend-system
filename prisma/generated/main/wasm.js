@@ -173,9 +173,25 @@ exports.Prisma.MedicalRecordScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.AccessPolicyScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  attributes: 'attributes',
+  effect: 'effect',
+  resources: 'resources',
+  actions: 'actions',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -186,6 +202,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',
@@ -200,13 +222,19 @@ exports.AppointmentStatus = exports.$Enums.AppointmentStatus = {
   RESCHEDULED: 'RESCHEDULED'
 };
 
+exports.PolicyEffect = exports.$Enums.PolicyEffect = {
+  ALLOW: 'ALLOW',
+  DENY: 'DENY'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Admin: 'Admin',
   Doctor: 'Doctor',
   Patient: 'Patient',
   Appointment: 'Appointment',
-  MedicalRecord: 'MedicalRecord'
+  MedicalRecord: 'MedicalRecord',
+  AccessPolicy: 'AccessPolicy'
 };
 
 /**
