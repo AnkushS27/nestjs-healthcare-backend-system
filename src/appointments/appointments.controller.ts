@@ -9,10 +9,9 @@ import { UserRole } from 'src/users/enums/user-role.enum';
 import { AbacGuard } from 'src/auth/guards/abac.guard';
 import { AuditActionDecorator } from '../logging/decorators/audit-log.decorator';
 import { AuditLoggingInterceptor } from '../logging/interceptors/audit-logging.interceptor';
-import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
 
 @ApiTags('appointments')
-@ApiBearerAuth('JWT-auth')
 @Controller('appointments')
 @UseGuards(JwtAuthGuard, RolesGuard, AbacGuard)
 @UseInterceptors(AuditLoggingInterceptor)

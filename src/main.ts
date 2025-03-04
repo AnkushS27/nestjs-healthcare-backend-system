@@ -21,17 +21,17 @@ async function bootstrap() {
   // Swagger configuration
   const config = new DocumentBuilder()
     .setTitle('Healthcare API')
-    .setDescription('API for managing healthcare operations with RBAC and ABAC')
+    .setDescription(`
+      **Healthcare API Documentation**
+
+      This API manages healthcare operations with Role-Based Access Control (RBAC) and Attribute-Based Access Control (ABAC).
+
+      **Authentication Instructions:**
+      - To authenticate, use the \`POST /auth/login\` endpoint with your credentials (e.g., \`{"email": "user@example.com", "password": "password123"}\`).
+      - This sets a JWT cookie (\`Authentication\`) in your browser, which is automatically included in subsequent requests.
+      - No manual token input is required in this Swagger UI; simply log in first via \`/auth/login\` and proceed with other requests.
+    `)
     .setVersion('1.0')
-    .addBearerAuth(
-      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
-      'JWT-auth', // Name of the security scheme
-    )
-    .addCookieAuth('Authentication', {
-      type: 'apiKey',
-      in: 'cookie',
-      name: 'Authentication',
-    })
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document); // Available at /api
