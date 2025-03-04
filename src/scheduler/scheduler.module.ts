@@ -4,6 +4,7 @@ import { SchedulerService } from './scheduler.service';
 import { AppointmentsModule } from '../appointments/appointments.module';
 import { DoctorsModule } from '../doctors/doctors.module';
 import { LoggingModule } from '../logging/logging.module';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { LoggingModule } from '../logging/logging.module';
     AppointmentsModule,
     DoctorsModule,
     LoggingModule,
+    UsersModule,
   ],
   providers: [SchedulerService],
 })

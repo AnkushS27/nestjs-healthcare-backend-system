@@ -3,6 +3,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { AppointmentsService } from '../appointments/appointments.service';
 import { DoctorsService } from '../doctors/doctors.service';
 import { LoggingService } from '../logging/logging.service';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class SchedulerService {
@@ -11,7 +12,8 @@ export class SchedulerService {
   constructor(
     private readonly appointmentsService: AppointmentsService,
     private readonly doctorsService: DoctorsService,
-    private readonly loggingService: LoggingService, // For logging notifications
+    private readonly loggingService: LoggingService, 
+    private readonly usersService: UsersService,
   ) {}
 
   // Daily patient appointment reminders at 8:00 AM
@@ -29,16 +31,15 @@ export class SchedulerService {
     );
 
     for (const appointment of appointments) {
-      if (!appointment.reminderSent && appointment.status === 'SCHEDULED') {
-        const message = `Reminder: Your appointment with Dr. ${appointment.doctor.user.name} is scheduled for ${appointment.scheduledAt.toLocaleString()}.`;
-        this.logger.log(`Sending reminder for appointment ${appointment.id} to patient ${appointment.patientId}`);
-
-        // Simulate sending notification (replace with actual implementation)
-        await this.sendNotification(appointment.patient.userId, message);
-
-        // Mark as sent
-        await this.appointmentsService.updateAppointment(appointment.id, { reminderSent: true });
-      }
+        if (!appointment.reminderSent && appointment.status === 'SCHEDULED') {
+            const patient = await this.usersService.getUser({ id: appointment.patient.userId });
+            if (patient.notificationPrefs?.appointmentReminder) {
+                const message = `Reminder: Your appointment with Dr. ${appointment.doctor.user.name} is scheduled for ${appointment.scheduledAt.toLocaleString()}.`;
+                this.logger.log(`Sending reminder for appointment ${appointment.id} to patient ${appointment.patientId}`);
+                await this.sendNotification(appointment.patient.userId, message);
+                await this.appointmentsService.updateAppointment(appointment.id, { reminderSent: true });
+            }
+        }
     }
   }
 
@@ -55,15 +56,16 @@ export class SchedulerService {
     for (const doctor of doctors) {
       const reminders = await this.getFollowUpRemindersForDoctor(doctor.id, today, nextWeek);
       for (const reminder of reminders) {
-        if (!reminder.completed) {
-          const message = `Follow-up Reminder: Patient ${reminder.patientName} (ID: ${reminder.patientId}) is due on ${reminder.dueDate.toLocaleDateString()}. Description: ${reminder.description}`;
-          this.logger.log(`Sending follow-up notification to doctor ${doctor.id} for reminder ${reminder.id}`);
-
-          // Simulate sending notification (replace with actual implementation)
-          await this.sendNotification(doctor.userId, message);
-
-          // Optionally mark as completed (adjust based on requirements)
-          // await this.updateFollowUpReminder(reminder.id, { completed: true });
+        const doctorUser = await this.usersService.getUser({ id: doctor.userId });
+        if (doctorUser.notificationPrefs?.followUpReminder) {
+            const reminders = await this.getFollowUpRemindersForDoctor(doctor.id, today, nextWeek);
+            for (const reminder of reminders) {
+            if (!reminder.completed) {
+                const message = `Follow-up Reminder: Patient ${reminder.patientName} (ID: ${reminder.patientId}) is due on ${reminder.dueDate.toLocaleDateString()}. Description: ${reminder.description}`;
+                this.logger.log(`Sending follow-up notification to doctor ${doctor.id} for reminder ${reminder.id}`);
+                await this.sendNotification(doctor.userId, message);
+            }
+            }
         }
       }
     }
