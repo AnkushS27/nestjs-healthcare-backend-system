@@ -14,6 +14,13 @@ enum Role {
   PATIENT
 }
 
+enum AppointmentStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+  RESCHEDULED
+}
+
 model User {
   id                    String                  @id @default(uuid())
   email                 String                  @unique
@@ -42,6 +49,7 @@ model Doctor {
   userId            String    @unique
   specialization    String    
   licenseNumber     String    @unique 
+  appointments      Appointment[]  // Relation to appointments
 }
 
 model Patient {
@@ -50,4 +58,22 @@ model Patient {
   userId            String    @unique
   dateOfBirth       DateTime  
   emergencyContact  String?   
+  appointments      Appointment[]   // Relation to appointments
+}
+
+model Appointment {
+  id              String            @id @default(uuid())
+  doctor          Doctor            @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  doctorId        String
+  patient         Patient           @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  patientId       String
+  scheduledAt     DateTime
+  endTime         DateTime
+  status          AppointmentStatus @default(SCHEDULED)
+  type            String            @default("Regular Checkup")
+  notes           String?
+  location        String?           // For ABAC later
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  reminderSent    Boolean           @default(false)
 }
