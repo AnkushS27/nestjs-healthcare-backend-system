@@ -3,6 +3,10 @@ import { LoggerModule } from 'nestjs-pino';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { DoctorsModule } from './doctors/doctors.module';
+import { PatientsModule } from './patients/patients.module';
+import { AppointmentsModule } from './appointments/appointments.module';
+import { MedicalRecordsModule } from './medical-records/medical-records.module';
 
 @Module({
   imports: [
@@ -29,7 +33,11 @@ import { AuthModule } from './auth/auth.module';
     }),
     ConfigModule.forRoot(),
     UsersModule,
-    AuthModule
+    AuthModule,
+    DoctorsModule,
+    PatientsModule,
+    AppointmentsModule,
+    MedicalRecordsModule
   ],
   controllers: [],
   providers: [],
