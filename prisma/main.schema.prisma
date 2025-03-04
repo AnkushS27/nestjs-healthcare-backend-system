@@ -21,6 +21,11 @@ enum AppointmentStatus {
   RESCHEDULED
 }
 
+enum PolicyEffect {
+  ALLOW
+  DENY
+}
+
 model User {
   id                    String                  @id @default(uuid())
   email                 String                  @unique
@@ -89,4 +94,16 @@ model MedicalRecord {
   attachments String[]  // URLs to attachments
   recordDate  DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+}
+
+model AccessPolicy {
+  id          String       @id @default(uuid())
+  name        String       @unique
+  description String
+  attributes  Json         // JSON structure with attribute conditions
+  effect      PolicyEffect @default(ALLOW)
+  resources   String[]     // API paths or resources this policy applies to
+  actions     String[]     // HTTP methods or actions
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
