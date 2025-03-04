@@ -8,6 +8,7 @@ import { PatientsModule } from './patients/patients.module';
 import { AppointmentsModule } from './appointments/appointments.module';
 import { MedicalRecordsModule } from './medical-records/medical-records.module';
 import { AccessPoliciesModule } from './access-policies/access-policies.module';
+import { LoggingModule } from './logging/logging.module';
 
 @Module({
   imports: [
@@ -39,7 +40,8 @@ import { AccessPoliciesModule } from './access-policies/access-policies.module';
     PatientsModule,
     AppointmentsModule,
     MedicalRecordsModule,
-    AccessPoliciesModule
+    AccessPoliciesModule,
+    LoggingModule
   ],
   controllers: [],
   providers: [],
