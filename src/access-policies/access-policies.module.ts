@@ -6,6 +6,7 @@ import { PrismaModule } from 'src/prisma/prisma.module';
 @Module({
   imports: [PrismaModule],
   providers: [AccessPoliciesService],
-  controllers: [AccessPoliciesController]
+  controllers: [AccessPoliciesController],
+  exports: [AccessPoliciesService],
 })
 export class AccessPoliciesModule {}
