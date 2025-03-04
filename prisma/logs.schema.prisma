@@ -8,8 +8,127 @@ datasource logs {
   url      = env("LOGS_DATABASE_URL")
 }
 
-model Log {
-  id        String   @id @default(uuid())
-  message   String
-  createdAt DateTime @default(now())
+enum Severity {
+  DEBUG
+  INFO
+  WARNING
+  ERROR
+  CRITICAL
+}
+
+enum AuditAction {
+  CREATE
+  READ
+  UPDATE
+  DELETE
+  LOGIN
+  LOGOUT
+  PASSWORD_CHANGE
+  PASSWORD_RESET
+  ACCESS_DENIED
+  ROLE_CHANGE
+  POLICY_CHANGE
+}
+
+enum AuthAction {
+  LOGIN
+  LOGOUT
+  TOKEN_REFRESH
+  PASSWORD_RESET_REQUEST
+  PASSWORD_RESET_COMPLETE
+  ACCOUNT_LOCK
+  ACCOUNT_UNLOCK
+  MFA_CHALLENGE
+  MFA_VERIFICATION
+}
+
+enum DeliveryStatus {
+  PENDING
+  SENT
+  DELIVERED
+  FAILED
+  READ
+}
+
+model ApiLog {
+  id              String    @id @default(uuid())
+  timestamp       DateTime  @default(now())
+  userId          String?   // Nullable if not authenticated
+  userRole        String?   // Role of the user
+  ipAddress       String?
+  method          String    // HTTP method (GET, POST, etc.)
+  endpoint        String    // API endpoint path
+  statusCode      Int       // HTTP status code
+  responseTime    Int       // Response time in ms
+  userAgent       String?
+  requestHeaders  Json?     // Sanitized request headers
+  requestBody     Json?     // Sanitized request body
+  responseSize    Int?      // Size of the response in bytes
+  referrer        String?   // HTTP referrer
+
+  @@index([timestamp])
+  @@index([userId])
+  @@index([endpoint])
+  @@index([statusCode])
+  @@map("api_logs")
+}
+
+model ErrorLog {
+  id              String    @id @default(uuid())
+  timestamp       DateTime  @default(now())
+  userId          String?
+  errorCode       String?
+  errorMessage    String
+  stackTrace      String?
+  severity        Severity  @default(ERROR)
+  source          String    // Module or service where error occurred
+  endpoint        String?
+  requestId       String?   // To correlate with ApiLog
+  metadata        Json?     // Additional context
+
+  @@index([timestamp])
+  @@index([severity])
+  @@index([source])
+  @@map("error_logs")
+}
+
+model AuditLog {
+  id              String      @id @default(uuid())
+  timestamp       DateTime    @default(now())
+  userId          String
+  userRole        String
+  action          AuditAction
+  resourceType    String      // e.g., "Appointment", "Patient"
+  resourceId      String      // ID of the affected resource
+  description     String      // Human-readable description
+  ipAddress       String?
+  changes         Json?       // Before/after values
+  success         Boolean     // Whether the action succeeded
+  additionalInfo  Json?       // Any additional relevant info
+
+  @@index([timestamp])
+  @@index([userId])
+  @@index([action])
+  @@index([resourceType, resourceId])
+  @@map("audit_logs")
+}
+
+model AuthLog {
+  id              String      @id @default(uuid())
+  timestamp       DateTime    @default(now())
+  userId          String?
+  email           String?     // For tracking login attempts
+  action          AuthAction
+  success         Boolean
+  ipAddress       String?
+  userAgent       String?
+  failureReason   String?     // Reason for failure if applicable
+  deviceInfo      Json?       // Device fingerprinting info
+
+  @@index([timestamp])
+  @@index([userId])
+  @@index([email])
+  @@index([action])
+  @@index([success])
+  @@map("auth_logs")
 }
