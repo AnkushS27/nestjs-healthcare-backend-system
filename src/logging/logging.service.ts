@@ -21,4 +21,8 @@ export class LoggingService {
   async logAuth(data: Prisma.AuthLogCreateInput) {
     return this.logsPrismaService.authLog.create({ data });
   }
+
+  async logNotification(data: Prisma.NotificationLogCreateInput) {
+    return this.logsPrismaService.notificationLog.create({ data });
+  }
 }

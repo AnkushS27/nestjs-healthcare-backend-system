@@ -50,6 +50,14 @@ enum DeliveryStatus {
   READ
 }
 
+enum NotificationChannel {
+  EMAIL
+  SMS
+  WHATSAPP
+  PUSH
+  IN_APP
+}
+
 model ApiLog {
   id              String    @id @default(uuid())
   timestamp       DateTime  @default(now())
@@ -131,4 +139,22 @@ model AuthLog {
   @@index([action])
   @@index([success])
   @@map("auth_logs")
+}
+
+model NotificationLog {
+  id              String              @id @default(uuid())
+  timestamp       DateTime            @default(now())
+  userId          String
+  channel         NotificationChannel
+  notificationType String             // e.g., "appointment_reminder"
+  content         String              // Sanitized content
+  status          DeliveryStatus
+  failureReason   String?             // Reason for failure if applicable
+  metadata        Json?               // Additional info like message ID
+
+  @@index([timestamp])
+  @@index([userId])
+  @@index([channel])
+  @@index([status])
+  @@map("notification_logs")
 }

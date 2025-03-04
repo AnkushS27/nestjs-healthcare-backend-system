@@ -41,7 +41,7 @@ import { LoggingModule } from './logging/logging.module';
     AppointmentsModule,
     MedicalRecordsModule,
     AccessPoliciesModule,
-    LoggingModule
+    LoggingModule,
   ],
   controllers: [],
   providers: [],
