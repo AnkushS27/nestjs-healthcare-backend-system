@@ -49,12 +49,13 @@ model Admin {
 }
 
 model Doctor {
-  id             String        @id @default(uuid())
-  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId         String        @unique
-  specialization String
-  licenseNumber  String        @unique
-  appointments   Appointment[] // Relation to appointments
+  id                String             @id @default(uuid())
+  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            String             @unique
+  specialization    String
+  licenseNumber     String             @unique
+  appointments      Appointment[] // Relation to appointments
+  followUpReminders FollowUpReminder[] // Relation to follow-up reminders
 }
 
 model Patient {
@@ -106,4 +107,18 @@ model AccessPolicy {
   actions     String[] // HTTP methods or actions
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
+}
+
+model FollowUpReminder {
+  id          String   @id @default(uuid())
+  doctor      Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  doctorId    String
+  patientName String // Storing name for simplicity
+  patientId   String // Reference without relation
+  dueDate     DateTime
+  description String
+  priority    String   @default("Normal")
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
