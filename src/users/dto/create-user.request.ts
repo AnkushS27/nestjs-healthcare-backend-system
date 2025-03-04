@@ -1,11 +1,11 @@
-import { IsEmail, IsStrongPassword, IsOptional, IsEnum, IsString } from 'class-validator';
+import { IsEmail, IsEnum, IsString } from 'class-validator';
 import { UserRole } from '../enums/user-role.enum';
 
 export class CreateUserRequest {
   @IsEmail()
   email: string;
 
-  @IsStrongPassword()
+  @IsString()
   password: string;
 
   @IsString()
