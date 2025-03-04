@@ -185,6 +185,31 @@ exports.Prisma.AccessPolicyScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.FollowUpReminderScalarFieldEnum = {
+  id: 'id',
+  doctorId: 'doctorId',
+  patientName: 'patientName',
+  patientId: 'patientId',
+  dueDate: 'dueDate',
+  description: 'description',
+  priority: 'priority',
+  completed: 'completed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.NotificationPreferenceScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  emailEnabled: 'emailEnabled',
+  smsEnabled: 'smsEnabled',
+  whatsappEnabled: 'whatsappEnabled',
+  appointmentReminder: 'appointmentReminder',
+  followUpReminder: 'followUpReminder',
+  marketingEmails: 'marketingEmails',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -234,7 +259,9 @@ exports.Prisma.ModelName = {
   Patient: 'Patient',
   Appointment: 'Appointment',
   MedicalRecord: 'MedicalRecord',
-  AccessPolicy: 'AccessPolicy'
+  AccessPolicy: 'AccessPolicy',
+  FollowUpReminder: 'FollowUpReminder',
+  NotificationPreference: 'NotificationPreference'
 };
 
 /**

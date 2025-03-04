@@ -1,4 +1,4 @@
-import { IsDateString, IsString, IsEnum, IsOptional } from 'class-validator';
+import { IsDateString, IsString, IsEnum, IsOptional, IsBoolean } from 'class-validator';
 import { AppointmentStatus } from 'prisma/generated/main';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -32,4 +32,9 @@ export class UpdateAppointmentRequest {
   @IsString()
   @IsOptional()
   location?: string;
+
+  @ApiProperty({ example: true, description: 'Whether a reminder was sent', required: false })
+  @IsOptional()
+  @IsBoolean()
+  reminderSent?: boolean;
 }

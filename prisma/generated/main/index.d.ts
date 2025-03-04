@@ -48,6 +48,16 @@ export type MedicalRecord = $Result.DefaultSelection<Prisma.$MedicalRecordPayloa
  * 
  */
 export type AccessPolicy = $Result.DefaultSelection<Prisma.$AccessPolicyPayload>
+/**
+ * Model FollowUpReminder
+ * 
+ */
+export type FollowUpReminder = $Result.DefaultSelection<Prisma.$FollowUpReminderPayload>
+/**
+ * Model NotificationPreference
+ * 
+ */
+export type NotificationPreference = $Result.DefaultSelection<Prisma.$NotificationPreferencePayload>
 
 /**
  * Enums
@@ -287,6 +297,26 @@ export class PrismaClient<
     * ```
     */
   get accessPolicy(): Prisma.AccessPolicyDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.followUpReminder`: Exposes CRUD operations for the **FollowUpReminder** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FollowUpReminders
+    * const followUpReminders = await prisma.followUpReminder.findMany()
+    * ```
+    */
+  get followUpReminder(): Prisma.FollowUpReminderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.notificationPreference`: Exposes CRUD operations for the **NotificationPreference** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more NotificationPreferences
+    * const notificationPreferences = await prisma.notificationPreference.findMany()
+    * ```
+    */
+  get notificationPreference(): Prisma.NotificationPreferenceDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -733,7 +763,9 @@ export namespace Prisma {
     Patient: 'Patient',
     Appointment: 'Appointment',
     MedicalRecord: 'MedicalRecord',
-    AccessPolicy: 'AccessPolicy'
+    AccessPolicy: 'AccessPolicy',
+    FollowUpReminder: 'FollowUpReminder',
+    NotificationPreference: 'NotificationPreference'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -749,7 +781,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "admin" | "doctor" | "patient" | "appointment" | "medicalRecord" | "accessPolicy"
+      modelProps: "user" | "admin" | "doctor" | "patient" | "appointment" | "medicalRecord" | "accessPolicy" | "followUpReminder" | "notificationPreference"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1271,6 +1303,154 @@ export namespace Prisma {
           }
         }
       }
+      FollowUpReminder: {
+        payload: Prisma.$FollowUpReminderPayload<ExtArgs>
+        fields: Prisma.FollowUpReminderFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FollowUpReminderFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowUpReminderPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FollowUpReminderFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowUpReminderPayload>
+          }
+          findFirst: {
+            args: Prisma.FollowUpReminderFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowUpReminderPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FollowUpReminderFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowUpReminderPayload>
+          }
+          findMany: {
+            args: Prisma.FollowUpReminderFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowUpReminderPayload>[]
+          }
+          create: {
+            args: Prisma.FollowUpReminderCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowUpReminderPayload>
+          }
+          createMany: {
+            args: Prisma.FollowUpReminderCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FollowUpReminderCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowUpReminderPayload>[]
+          }
+          delete: {
+            args: Prisma.FollowUpReminderDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowUpReminderPayload>
+          }
+          update: {
+            args: Prisma.FollowUpReminderUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowUpReminderPayload>
+          }
+          deleteMany: {
+            args: Prisma.FollowUpReminderDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FollowUpReminderUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FollowUpReminderUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowUpReminderPayload>[]
+          }
+          upsert: {
+            args: Prisma.FollowUpReminderUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowUpReminderPayload>
+          }
+          aggregate: {
+            args: Prisma.FollowUpReminderAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFollowUpReminder>
+          }
+          groupBy: {
+            args: Prisma.FollowUpReminderGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FollowUpReminderGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FollowUpReminderCountArgs<ExtArgs>
+            result: $Utils.Optional<FollowUpReminderCountAggregateOutputType> | number
+          }
+        }
+      }
+      NotificationPreference: {
+        payload: Prisma.$NotificationPreferencePayload<ExtArgs>
+        fields: Prisma.NotificationPreferenceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NotificationPreferenceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NotificationPreferenceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+          }
+          findFirst: {
+            args: Prisma.NotificationPreferenceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NotificationPreferenceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+          }
+          findMany: {
+            args: Prisma.NotificationPreferenceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>[]
+          }
+          create: {
+            args: Prisma.NotificationPreferenceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+          }
+          createMany: {
+            args: Prisma.NotificationPreferenceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NotificationPreferenceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>[]
+          }
+          delete: {
+            args: Prisma.NotificationPreferenceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+          }
+          update: {
+            args: Prisma.NotificationPreferenceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+          }
+          deleteMany: {
+            args: Prisma.NotificationPreferenceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NotificationPreferenceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NotificationPreferenceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>[]
+          }
+          upsert: {
+            args: Prisma.NotificationPreferenceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+          }
+          aggregate: {
+            args: Prisma.NotificationPreferenceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotificationPreference>
+          }
+          groupBy: {
+            args: Prisma.NotificationPreferenceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotificationPreferenceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NotificationPreferenceCountArgs<ExtArgs>
+            result: $Utils.Optional<NotificationPreferenceCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1362,6 +1542,8 @@ export namespace Prisma {
     appointment?: AppointmentOmit
     medicalRecord?: MedicalRecordOmit
     accessPolicy?: AccessPolicyOmit
+    followUpReminder?: FollowUpReminderOmit
+    notificationPreference?: NotificationPreferenceOmit
   }
 
   /* Types for Logging */
@@ -1457,10 +1639,12 @@ export namespace Prisma {
 
   export type DoctorCountOutputType = {
     appointments: number
+    followUpReminders: number
   }
 
   export type DoctorCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     appointments?: boolean | DoctorCountOutputTypeCountAppointmentsArgs
+    followUpReminders?: boolean | DoctorCountOutputTypeCountFollowUpRemindersArgs
   }
 
   // Custom InputTypes
@@ -1479,6 +1663,13 @@ export namespace Prisma {
    */
   export type DoctorCountOutputTypeCountAppointmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AppointmentWhereInput
+  }
+
+  /**
+   * DoctorCountOutputType without action
+   */
+  export type DoctorCountOutputTypeCountFollowUpRemindersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FollowUpReminderWhereInput
   }
 
 
@@ -1709,6 +1900,7 @@ export namespace Prisma {
     admin?: boolean | User$adminArgs<ExtArgs>
     doctor?: boolean | User$doctorArgs<ExtArgs>
     patient?: boolean | User$patientArgs<ExtArgs>
+    notificationPrefs?: boolean | User$notificationPrefsArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1746,6 +1938,7 @@ export namespace Prisma {
     admin?: boolean | User$adminArgs<ExtArgs>
     doctor?: boolean | User$doctorArgs<ExtArgs>
     patient?: boolean | User$patientArgs<ExtArgs>
+    notificationPrefs?: boolean | User$notificationPrefsArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
   export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1756,6 +1949,7 @@ export namespace Prisma {
       admin: Prisma.$AdminPayload<ExtArgs> | null
       doctor: Prisma.$DoctorPayload<ExtArgs> | null
       patient: Prisma.$PatientPayload<ExtArgs> | null
+      notificationPrefs: Prisma.$NotificationPreferencePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2162,6 +2356,7 @@ export namespace Prisma {
     admin<T extends User$adminArgs<ExtArgs> = {}>(args?: Subset<T, User$adminArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     doctor<T extends User$doctorArgs<ExtArgs> = {}>(args?: Subset<T, User$doctorArgs<ExtArgs>>): Prisma__DoctorClient<$Result.GetResult<Prisma.$DoctorPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     patient<T extends User$patientArgs<ExtArgs> = {}>(args?: Subset<T, User$patientArgs<ExtArgs>>): Prisma__PatientClient<$Result.GetResult<Prisma.$PatientPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
+    notificationPrefs<T extends User$notificationPrefsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationPrefsArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2640,6 +2835,25 @@ export namespace Prisma {
      */
     include?: PatientInclude<ExtArgs> | null
     where?: PatientWhereInput
+  }
+
+  /**
+   * User.notificationPrefs
+   */
+  export type User$notificationPrefsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    where?: NotificationPreferenceWhereInput
   }
 
   /**
@@ -3851,6 +4065,7 @@ export namespace Prisma {
     licenseNumber?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     appointments?: boolean | Doctor$appointmentsArgs<ExtArgs>
+    followUpReminders?: boolean | Doctor$followUpRemindersArgs<ExtArgs>
     _count?: boolean | DoctorCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["doctor"]>
 
@@ -3881,6 +4096,7 @@ export namespace Prisma {
   export type DoctorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     appointments?: boolean | Doctor$appointmentsArgs<ExtArgs>
+    followUpReminders?: boolean | Doctor$followUpRemindersArgs<ExtArgs>
     _count?: boolean | DoctorCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DoctorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3895,6 +4111,7 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       appointments: Prisma.$AppointmentPayload<ExtArgs>[]
+      followUpReminders: Prisma.$FollowUpReminderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4297,6 +4514,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
     appointments<T extends Doctor$appointmentsArgs<ExtArgs> = {}>(args?: Subset<T, Doctor$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    followUpReminders<T extends Doctor$followUpRemindersArgs<ExtArgs> = {}>(args?: Subset<T, Doctor$followUpRemindersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowUpReminderPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4747,6 +4965,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AppointmentScalarFieldEnum | AppointmentScalarFieldEnum[]
+  }
+
+  /**
+   * Doctor.followUpReminders
+   */
+  export type Doctor$followUpRemindersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpReminder
+     */
+    select?: FollowUpReminderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpReminder
+     */
+    omit?: FollowUpReminderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpReminderInclude<ExtArgs> | null
+    where?: FollowUpReminderWhereInput
+    orderBy?: FollowUpReminderOrderByWithRelationInput | FollowUpReminderOrderByWithRelationInput[]
+    cursor?: FollowUpReminderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FollowUpReminderScalarFieldEnum | FollowUpReminderScalarFieldEnum[]
   }
 
   /**
@@ -9157,6 +9399,2239 @@ export namespace Prisma {
 
 
   /**
+   * Model FollowUpReminder
+   */
+
+  export type AggregateFollowUpReminder = {
+    _count: FollowUpReminderCountAggregateOutputType | null
+    _min: FollowUpReminderMinAggregateOutputType | null
+    _max: FollowUpReminderMaxAggregateOutputType | null
+  }
+
+  export type FollowUpReminderMinAggregateOutputType = {
+    id: string | null
+    doctorId: string | null
+    patientName: string | null
+    patientId: string | null
+    dueDate: Date | null
+    description: string | null
+    priority: string | null
+    completed: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FollowUpReminderMaxAggregateOutputType = {
+    id: string | null
+    doctorId: string | null
+    patientName: string | null
+    patientId: string | null
+    dueDate: Date | null
+    description: string | null
+    priority: string | null
+    completed: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FollowUpReminderCountAggregateOutputType = {
+    id: number
+    doctorId: number
+    patientName: number
+    patientId: number
+    dueDate: number
+    description: number
+    priority: number
+    completed: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FollowUpReminderMinAggregateInputType = {
+    id?: true
+    doctorId?: true
+    patientName?: true
+    patientId?: true
+    dueDate?: true
+    description?: true
+    priority?: true
+    completed?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FollowUpReminderMaxAggregateInputType = {
+    id?: true
+    doctorId?: true
+    patientName?: true
+    patientId?: true
+    dueDate?: true
+    description?: true
+    priority?: true
+    completed?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FollowUpReminderCountAggregateInputType = {
+    id?: true
+    doctorId?: true
+    patientName?: true
+    patientId?: true
+    dueDate?: true
+    description?: true
+    priority?: true
+    completed?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FollowUpReminderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FollowUpReminder to aggregate.
+     */
+    where?: FollowUpReminderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FollowUpReminders to fetch.
+     */
+    orderBy?: FollowUpReminderOrderByWithRelationInput | FollowUpReminderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FollowUpReminderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FollowUpReminders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FollowUpReminders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FollowUpReminders
+    **/
+    _count?: true | FollowUpReminderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FollowUpReminderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FollowUpReminderMaxAggregateInputType
+  }
+
+  export type GetFollowUpReminderAggregateType<T extends FollowUpReminderAggregateArgs> = {
+        [P in keyof T & keyof AggregateFollowUpReminder]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFollowUpReminder[P]>
+      : GetScalarType<T[P], AggregateFollowUpReminder[P]>
+  }
+
+
+
+
+  export type FollowUpReminderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FollowUpReminderWhereInput
+    orderBy?: FollowUpReminderOrderByWithAggregationInput | FollowUpReminderOrderByWithAggregationInput[]
+    by: FollowUpReminderScalarFieldEnum[] | FollowUpReminderScalarFieldEnum
+    having?: FollowUpReminderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FollowUpReminderCountAggregateInputType | true
+    _min?: FollowUpReminderMinAggregateInputType
+    _max?: FollowUpReminderMaxAggregateInputType
+  }
+
+  export type FollowUpReminderGroupByOutputType = {
+    id: string
+    doctorId: string
+    patientName: string
+    patientId: string
+    dueDate: Date
+    description: string
+    priority: string
+    completed: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: FollowUpReminderCountAggregateOutputType | null
+    _min: FollowUpReminderMinAggregateOutputType | null
+    _max: FollowUpReminderMaxAggregateOutputType | null
+  }
+
+  type GetFollowUpReminderGroupByPayload<T extends FollowUpReminderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FollowUpReminderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FollowUpReminderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FollowUpReminderGroupByOutputType[P]>
+            : GetScalarType<T[P], FollowUpReminderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FollowUpReminderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    doctorId?: boolean
+    patientName?: boolean
+    patientId?: boolean
+    dueDate?: boolean
+    description?: boolean
+    priority?: boolean
+    completed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    doctor?: boolean | DoctorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["followUpReminder"]>
+
+  export type FollowUpReminderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    doctorId?: boolean
+    patientName?: boolean
+    patientId?: boolean
+    dueDate?: boolean
+    description?: boolean
+    priority?: boolean
+    completed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    doctor?: boolean | DoctorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["followUpReminder"]>
+
+  export type FollowUpReminderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    doctorId?: boolean
+    patientName?: boolean
+    patientId?: boolean
+    dueDate?: boolean
+    description?: boolean
+    priority?: boolean
+    completed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    doctor?: boolean | DoctorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["followUpReminder"]>
+
+  export type FollowUpReminderSelectScalar = {
+    id?: boolean
+    doctorId?: boolean
+    patientName?: boolean
+    patientId?: boolean
+    dueDate?: boolean
+    description?: boolean
+    priority?: boolean
+    completed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FollowUpReminderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "doctorId" | "patientName" | "patientId" | "dueDate" | "description" | "priority" | "completed" | "createdAt" | "updatedAt", ExtArgs["result"]["followUpReminder"]>
+  export type FollowUpReminderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    doctor?: boolean | DoctorDefaultArgs<ExtArgs>
+  }
+  export type FollowUpReminderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    doctor?: boolean | DoctorDefaultArgs<ExtArgs>
+  }
+  export type FollowUpReminderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    doctor?: boolean | DoctorDefaultArgs<ExtArgs>
+  }
+
+  export type $FollowUpReminderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FollowUpReminder"
+    objects: {
+      doctor: Prisma.$DoctorPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      doctorId: string
+      patientName: string
+      patientId: string
+      dueDate: Date
+      description: string
+      priority: string
+      completed: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["followUpReminder"]>
+    composites: {}
+  }
+
+  type FollowUpReminderGetPayload<S extends boolean | null | undefined | FollowUpReminderDefaultArgs> = $Result.GetResult<Prisma.$FollowUpReminderPayload, S>
+
+  type FollowUpReminderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FollowUpReminderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FollowUpReminderCountAggregateInputType | true
+    }
+
+  export interface FollowUpReminderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FollowUpReminder'], meta: { name: 'FollowUpReminder' } }
+    /**
+     * Find zero or one FollowUpReminder that matches the filter.
+     * @param {FollowUpReminderFindUniqueArgs} args - Arguments to find a FollowUpReminder
+     * @example
+     * // Get one FollowUpReminder
+     * const followUpReminder = await prisma.followUpReminder.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FollowUpReminderFindUniqueArgs>(args: SelectSubset<T, FollowUpReminderFindUniqueArgs<ExtArgs>>): Prisma__FollowUpReminderClient<$Result.GetResult<Prisma.$FollowUpReminderPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one FollowUpReminder that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FollowUpReminderFindUniqueOrThrowArgs} args - Arguments to find a FollowUpReminder
+     * @example
+     * // Get one FollowUpReminder
+     * const followUpReminder = await prisma.followUpReminder.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FollowUpReminderFindUniqueOrThrowArgs>(args: SelectSubset<T, FollowUpReminderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FollowUpReminderClient<$Result.GetResult<Prisma.$FollowUpReminderPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first FollowUpReminder that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowUpReminderFindFirstArgs} args - Arguments to find a FollowUpReminder
+     * @example
+     * // Get one FollowUpReminder
+     * const followUpReminder = await prisma.followUpReminder.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FollowUpReminderFindFirstArgs>(args?: SelectSubset<T, FollowUpReminderFindFirstArgs<ExtArgs>>): Prisma__FollowUpReminderClient<$Result.GetResult<Prisma.$FollowUpReminderPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first FollowUpReminder that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowUpReminderFindFirstOrThrowArgs} args - Arguments to find a FollowUpReminder
+     * @example
+     * // Get one FollowUpReminder
+     * const followUpReminder = await prisma.followUpReminder.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FollowUpReminderFindFirstOrThrowArgs>(args?: SelectSubset<T, FollowUpReminderFindFirstOrThrowArgs<ExtArgs>>): Prisma__FollowUpReminderClient<$Result.GetResult<Prisma.$FollowUpReminderPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more FollowUpReminders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowUpReminderFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FollowUpReminders
+     * const followUpReminders = await prisma.followUpReminder.findMany()
+     * 
+     * // Get first 10 FollowUpReminders
+     * const followUpReminders = await prisma.followUpReminder.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const followUpReminderWithIdOnly = await prisma.followUpReminder.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FollowUpReminderFindManyArgs>(args?: SelectSubset<T, FollowUpReminderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowUpReminderPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a FollowUpReminder.
+     * @param {FollowUpReminderCreateArgs} args - Arguments to create a FollowUpReminder.
+     * @example
+     * // Create one FollowUpReminder
+     * const FollowUpReminder = await prisma.followUpReminder.create({
+     *   data: {
+     *     // ... data to create a FollowUpReminder
+     *   }
+     * })
+     * 
+     */
+    create<T extends FollowUpReminderCreateArgs>(args: SelectSubset<T, FollowUpReminderCreateArgs<ExtArgs>>): Prisma__FollowUpReminderClient<$Result.GetResult<Prisma.$FollowUpReminderPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many FollowUpReminders.
+     * @param {FollowUpReminderCreateManyArgs} args - Arguments to create many FollowUpReminders.
+     * @example
+     * // Create many FollowUpReminders
+     * const followUpReminder = await prisma.followUpReminder.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FollowUpReminderCreateManyArgs>(args?: SelectSubset<T, FollowUpReminderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FollowUpReminders and returns the data saved in the database.
+     * @param {FollowUpReminderCreateManyAndReturnArgs} args - Arguments to create many FollowUpReminders.
+     * @example
+     * // Create many FollowUpReminders
+     * const followUpReminder = await prisma.followUpReminder.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FollowUpReminders and only return the `id`
+     * const followUpReminderWithIdOnly = await prisma.followUpReminder.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FollowUpReminderCreateManyAndReturnArgs>(args?: SelectSubset<T, FollowUpReminderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowUpReminderPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a FollowUpReminder.
+     * @param {FollowUpReminderDeleteArgs} args - Arguments to delete one FollowUpReminder.
+     * @example
+     * // Delete one FollowUpReminder
+     * const FollowUpReminder = await prisma.followUpReminder.delete({
+     *   where: {
+     *     // ... filter to delete one FollowUpReminder
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FollowUpReminderDeleteArgs>(args: SelectSubset<T, FollowUpReminderDeleteArgs<ExtArgs>>): Prisma__FollowUpReminderClient<$Result.GetResult<Prisma.$FollowUpReminderPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one FollowUpReminder.
+     * @param {FollowUpReminderUpdateArgs} args - Arguments to update one FollowUpReminder.
+     * @example
+     * // Update one FollowUpReminder
+     * const followUpReminder = await prisma.followUpReminder.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FollowUpReminderUpdateArgs>(args: SelectSubset<T, FollowUpReminderUpdateArgs<ExtArgs>>): Prisma__FollowUpReminderClient<$Result.GetResult<Prisma.$FollowUpReminderPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more FollowUpReminders.
+     * @param {FollowUpReminderDeleteManyArgs} args - Arguments to filter FollowUpReminders to delete.
+     * @example
+     * // Delete a few FollowUpReminders
+     * const { count } = await prisma.followUpReminder.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FollowUpReminderDeleteManyArgs>(args?: SelectSubset<T, FollowUpReminderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FollowUpReminders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowUpReminderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FollowUpReminders
+     * const followUpReminder = await prisma.followUpReminder.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FollowUpReminderUpdateManyArgs>(args: SelectSubset<T, FollowUpReminderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FollowUpReminders and returns the data updated in the database.
+     * @param {FollowUpReminderUpdateManyAndReturnArgs} args - Arguments to update many FollowUpReminders.
+     * @example
+     * // Update many FollowUpReminders
+     * const followUpReminder = await prisma.followUpReminder.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FollowUpReminders and only return the `id`
+     * const followUpReminderWithIdOnly = await prisma.followUpReminder.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FollowUpReminderUpdateManyAndReturnArgs>(args: SelectSubset<T, FollowUpReminderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowUpReminderPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one FollowUpReminder.
+     * @param {FollowUpReminderUpsertArgs} args - Arguments to update or create a FollowUpReminder.
+     * @example
+     * // Update or create a FollowUpReminder
+     * const followUpReminder = await prisma.followUpReminder.upsert({
+     *   create: {
+     *     // ... data to create a FollowUpReminder
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FollowUpReminder we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FollowUpReminderUpsertArgs>(args: SelectSubset<T, FollowUpReminderUpsertArgs<ExtArgs>>): Prisma__FollowUpReminderClient<$Result.GetResult<Prisma.$FollowUpReminderPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of FollowUpReminders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowUpReminderCountArgs} args - Arguments to filter FollowUpReminders to count.
+     * @example
+     * // Count the number of FollowUpReminders
+     * const count = await prisma.followUpReminder.count({
+     *   where: {
+     *     // ... the filter for the FollowUpReminders we want to count
+     *   }
+     * })
+    **/
+    count<T extends FollowUpReminderCountArgs>(
+      args?: Subset<T, FollowUpReminderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FollowUpReminderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FollowUpReminder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowUpReminderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FollowUpReminderAggregateArgs>(args: Subset<T, FollowUpReminderAggregateArgs>): Prisma.PrismaPromise<GetFollowUpReminderAggregateType<T>>
+
+    /**
+     * Group by FollowUpReminder.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowUpReminderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FollowUpReminderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FollowUpReminderGroupByArgs['orderBy'] }
+        : { orderBy?: FollowUpReminderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FollowUpReminderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFollowUpReminderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FollowUpReminder model
+   */
+  readonly fields: FollowUpReminderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FollowUpReminder.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FollowUpReminderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    doctor<T extends DoctorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DoctorDefaultArgs<ExtArgs>>): Prisma__DoctorClient<$Result.GetResult<Prisma.$DoctorPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FollowUpReminder model
+   */ 
+  interface FollowUpReminderFieldRefs {
+    readonly id: FieldRef<"FollowUpReminder", 'String'>
+    readonly doctorId: FieldRef<"FollowUpReminder", 'String'>
+    readonly patientName: FieldRef<"FollowUpReminder", 'String'>
+    readonly patientId: FieldRef<"FollowUpReminder", 'String'>
+    readonly dueDate: FieldRef<"FollowUpReminder", 'DateTime'>
+    readonly description: FieldRef<"FollowUpReminder", 'String'>
+    readonly priority: FieldRef<"FollowUpReminder", 'String'>
+    readonly completed: FieldRef<"FollowUpReminder", 'Boolean'>
+    readonly createdAt: FieldRef<"FollowUpReminder", 'DateTime'>
+    readonly updatedAt: FieldRef<"FollowUpReminder", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FollowUpReminder findUnique
+   */
+  export type FollowUpReminderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpReminder
+     */
+    select?: FollowUpReminderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpReminder
+     */
+    omit?: FollowUpReminderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpReminderInclude<ExtArgs> | null
+    /**
+     * Filter, which FollowUpReminder to fetch.
+     */
+    where: FollowUpReminderWhereUniqueInput
+  }
+
+  /**
+   * FollowUpReminder findUniqueOrThrow
+   */
+  export type FollowUpReminderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpReminder
+     */
+    select?: FollowUpReminderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpReminder
+     */
+    omit?: FollowUpReminderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpReminderInclude<ExtArgs> | null
+    /**
+     * Filter, which FollowUpReminder to fetch.
+     */
+    where: FollowUpReminderWhereUniqueInput
+  }
+
+  /**
+   * FollowUpReminder findFirst
+   */
+  export type FollowUpReminderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpReminder
+     */
+    select?: FollowUpReminderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpReminder
+     */
+    omit?: FollowUpReminderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpReminderInclude<ExtArgs> | null
+    /**
+     * Filter, which FollowUpReminder to fetch.
+     */
+    where?: FollowUpReminderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FollowUpReminders to fetch.
+     */
+    orderBy?: FollowUpReminderOrderByWithRelationInput | FollowUpReminderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FollowUpReminders.
+     */
+    cursor?: FollowUpReminderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FollowUpReminders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FollowUpReminders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FollowUpReminders.
+     */
+    distinct?: FollowUpReminderScalarFieldEnum | FollowUpReminderScalarFieldEnum[]
+  }
+
+  /**
+   * FollowUpReminder findFirstOrThrow
+   */
+  export type FollowUpReminderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpReminder
+     */
+    select?: FollowUpReminderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpReminder
+     */
+    omit?: FollowUpReminderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpReminderInclude<ExtArgs> | null
+    /**
+     * Filter, which FollowUpReminder to fetch.
+     */
+    where?: FollowUpReminderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FollowUpReminders to fetch.
+     */
+    orderBy?: FollowUpReminderOrderByWithRelationInput | FollowUpReminderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FollowUpReminders.
+     */
+    cursor?: FollowUpReminderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FollowUpReminders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FollowUpReminders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FollowUpReminders.
+     */
+    distinct?: FollowUpReminderScalarFieldEnum | FollowUpReminderScalarFieldEnum[]
+  }
+
+  /**
+   * FollowUpReminder findMany
+   */
+  export type FollowUpReminderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpReminder
+     */
+    select?: FollowUpReminderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpReminder
+     */
+    omit?: FollowUpReminderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpReminderInclude<ExtArgs> | null
+    /**
+     * Filter, which FollowUpReminders to fetch.
+     */
+    where?: FollowUpReminderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FollowUpReminders to fetch.
+     */
+    orderBy?: FollowUpReminderOrderByWithRelationInput | FollowUpReminderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FollowUpReminders.
+     */
+    cursor?: FollowUpReminderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FollowUpReminders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FollowUpReminders.
+     */
+    skip?: number
+    distinct?: FollowUpReminderScalarFieldEnum | FollowUpReminderScalarFieldEnum[]
+  }
+
+  /**
+   * FollowUpReminder create
+   */
+  export type FollowUpReminderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpReminder
+     */
+    select?: FollowUpReminderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpReminder
+     */
+    omit?: FollowUpReminderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpReminderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FollowUpReminder.
+     */
+    data: XOR<FollowUpReminderCreateInput, FollowUpReminderUncheckedCreateInput>
+  }
+
+  /**
+   * FollowUpReminder createMany
+   */
+  export type FollowUpReminderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FollowUpReminders.
+     */
+    data: FollowUpReminderCreateManyInput | FollowUpReminderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FollowUpReminder createManyAndReturn
+   */
+  export type FollowUpReminderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpReminder
+     */
+    select?: FollowUpReminderSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpReminder
+     */
+    omit?: FollowUpReminderOmit<ExtArgs> | null
+    /**
+     * The data used to create many FollowUpReminders.
+     */
+    data: FollowUpReminderCreateManyInput | FollowUpReminderCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpReminderIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FollowUpReminder update
+   */
+  export type FollowUpReminderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpReminder
+     */
+    select?: FollowUpReminderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpReminder
+     */
+    omit?: FollowUpReminderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpReminderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FollowUpReminder.
+     */
+    data: XOR<FollowUpReminderUpdateInput, FollowUpReminderUncheckedUpdateInput>
+    /**
+     * Choose, which FollowUpReminder to update.
+     */
+    where: FollowUpReminderWhereUniqueInput
+  }
+
+  /**
+   * FollowUpReminder updateMany
+   */
+  export type FollowUpReminderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FollowUpReminders.
+     */
+    data: XOR<FollowUpReminderUpdateManyMutationInput, FollowUpReminderUncheckedUpdateManyInput>
+    /**
+     * Filter which FollowUpReminders to update
+     */
+    where?: FollowUpReminderWhereInput
+    /**
+     * Limit how many FollowUpReminders to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FollowUpReminder updateManyAndReturn
+   */
+  export type FollowUpReminderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpReminder
+     */
+    select?: FollowUpReminderSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpReminder
+     */
+    omit?: FollowUpReminderOmit<ExtArgs> | null
+    /**
+     * The data used to update FollowUpReminders.
+     */
+    data: XOR<FollowUpReminderUpdateManyMutationInput, FollowUpReminderUncheckedUpdateManyInput>
+    /**
+     * Filter which FollowUpReminders to update
+     */
+    where?: FollowUpReminderWhereInput
+    /**
+     * Limit how many FollowUpReminders to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpReminderIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FollowUpReminder upsert
+   */
+  export type FollowUpReminderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpReminder
+     */
+    select?: FollowUpReminderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpReminder
+     */
+    omit?: FollowUpReminderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpReminderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FollowUpReminder to update in case it exists.
+     */
+    where: FollowUpReminderWhereUniqueInput
+    /**
+     * In case the FollowUpReminder found by the `where` argument doesn't exist, create a new FollowUpReminder with this data.
+     */
+    create: XOR<FollowUpReminderCreateInput, FollowUpReminderUncheckedCreateInput>
+    /**
+     * In case the FollowUpReminder was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FollowUpReminderUpdateInput, FollowUpReminderUncheckedUpdateInput>
+  }
+
+  /**
+   * FollowUpReminder delete
+   */
+  export type FollowUpReminderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpReminder
+     */
+    select?: FollowUpReminderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpReminder
+     */
+    omit?: FollowUpReminderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpReminderInclude<ExtArgs> | null
+    /**
+     * Filter which FollowUpReminder to delete.
+     */
+    where: FollowUpReminderWhereUniqueInput
+  }
+
+  /**
+   * FollowUpReminder deleteMany
+   */
+  export type FollowUpReminderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FollowUpReminders to delete
+     */
+    where?: FollowUpReminderWhereInput
+    /**
+     * Limit how many FollowUpReminders to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FollowUpReminder without action
+   */
+  export type FollowUpReminderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FollowUpReminder
+     */
+    select?: FollowUpReminderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FollowUpReminder
+     */
+    omit?: FollowUpReminderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowUpReminderInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model NotificationPreference
+   */
+
+  export type AggregateNotificationPreference = {
+    _count: NotificationPreferenceCountAggregateOutputType | null
+    _min: NotificationPreferenceMinAggregateOutputType | null
+    _max: NotificationPreferenceMaxAggregateOutputType | null
+  }
+
+  export type NotificationPreferenceMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    emailEnabled: boolean | null
+    smsEnabled: boolean | null
+    whatsappEnabled: boolean | null
+    appointmentReminder: boolean | null
+    followUpReminder: boolean | null
+    marketingEmails: boolean | null
+    updatedAt: Date | null
+  }
+
+  export type NotificationPreferenceMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    emailEnabled: boolean | null
+    smsEnabled: boolean | null
+    whatsappEnabled: boolean | null
+    appointmentReminder: boolean | null
+    followUpReminder: boolean | null
+    marketingEmails: boolean | null
+    updatedAt: Date | null
+  }
+
+  export type NotificationPreferenceCountAggregateOutputType = {
+    id: number
+    userId: number
+    emailEnabled: number
+    smsEnabled: number
+    whatsappEnabled: number
+    appointmentReminder: number
+    followUpReminder: number
+    marketingEmails: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type NotificationPreferenceMinAggregateInputType = {
+    id?: true
+    userId?: true
+    emailEnabled?: true
+    smsEnabled?: true
+    whatsappEnabled?: true
+    appointmentReminder?: true
+    followUpReminder?: true
+    marketingEmails?: true
+    updatedAt?: true
+  }
+
+  export type NotificationPreferenceMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    emailEnabled?: true
+    smsEnabled?: true
+    whatsappEnabled?: true
+    appointmentReminder?: true
+    followUpReminder?: true
+    marketingEmails?: true
+    updatedAt?: true
+  }
+
+  export type NotificationPreferenceCountAggregateInputType = {
+    id?: true
+    userId?: true
+    emailEnabled?: true
+    smsEnabled?: true
+    whatsappEnabled?: true
+    appointmentReminder?: true
+    followUpReminder?: true
+    marketingEmails?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type NotificationPreferenceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NotificationPreference to aggregate.
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationPreferences to fetch.
+     */
+    orderBy?: NotificationPreferenceOrderByWithRelationInput | NotificationPreferenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NotificationPreferenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationPreferences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationPreferences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned NotificationPreferences
+    **/
+    _count?: true | NotificationPreferenceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotificationPreferenceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotificationPreferenceMaxAggregateInputType
+  }
+
+  export type GetNotificationPreferenceAggregateType<T extends NotificationPreferenceAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotificationPreference]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotificationPreference[P]>
+      : GetScalarType<T[P], AggregateNotificationPreference[P]>
+  }
+
+
+
+
+  export type NotificationPreferenceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationPreferenceWhereInput
+    orderBy?: NotificationPreferenceOrderByWithAggregationInput | NotificationPreferenceOrderByWithAggregationInput[]
+    by: NotificationPreferenceScalarFieldEnum[] | NotificationPreferenceScalarFieldEnum
+    having?: NotificationPreferenceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotificationPreferenceCountAggregateInputType | true
+    _min?: NotificationPreferenceMinAggregateInputType
+    _max?: NotificationPreferenceMaxAggregateInputType
+  }
+
+  export type NotificationPreferenceGroupByOutputType = {
+    id: string
+    userId: string
+    emailEnabled: boolean
+    smsEnabled: boolean
+    whatsappEnabled: boolean
+    appointmentReminder: boolean
+    followUpReminder: boolean
+    marketingEmails: boolean
+    updatedAt: Date
+    _count: NotificationPreferenceCountAggregateOutputType | null
+    _min: NotificationPreferenceMinAggregateOutputType | null
+    _max: NotificationPreferenceMaxAggregateOutputType | null
+  }
+
+  type GetNotificationPreferenceGroupByPayload<T extends NotificationPreferenceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotificationPreferenceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotificationPreferenceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotificationPreferenceGroupByOutputType[P]>
+            : GetScalarType<T[P], NotificationPreferenceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NotificationPreferenceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    emailEnabled?: boolean
+    smsEnabled?: boolean
+    whatsappEnabled?: boolean
+    appointmentReminder?: boolean
+    followUpReminder?: boolean
+    marketingEmails?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notificationPreference"]>
+
+  export type NotificationPreferenceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    emailEnabled?: boolean
+    smsEnabled?: boolean
+    whatsappEnabled?: boolean
+    appointmentReminder?: boolean
+    followUpReminder?: boolean
+    marketingEmails?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notificationPreference"]>
+
+  export type NotificationPreferenceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    emailEnabled?: boolean
+    smsEnabled?: boolean
+    whatsappEnabled?: boolean
+    appointmentReminder?: boolean
+    followUpReminder?: boolean
+    marketingEmails?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notificationPreference"]>
+
+  export type NotificationPreferenceSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    emailEnabled?: boolean
+    smsEnabled?: boolean
+    whatsappEnabled?: boolean
+    appointmentReminder?: boolean
+    followUpReminder?: boolean
+    marketingEmails?: boolean
+    updatedAt?: boolean
+  }
+
+  export type NotificationPreferenceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "emailEnabled" | "smsEnabled" | "whatsappEnabled" | "appointmentReminder" | "followUpReminder" | "marketingEmails" | "updatedAt", ExtArgs["result"]["notificationPreference"]>
+  export type NotificationPreferenceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type NotificationPreferenceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type NotificationPreferenceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $NotificationPreferencePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "NotificationPreference"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      emailEnabled: boolean
+      smsEnabled: boolean
+      whatsappEnabled: boolean
+      appointmentReminder: boolean
+      followUpReminder: boolean
+      marketingEmails: boolean
+      updatedAt: Date
+    }, ExtArgs["result"]["notificationPreference"]>
+    composites: {}
+  }
+
+  type NotificationPreferenceGetPayload<S extends boolean | null | undefined | NotificationPreferenceDefaultArgs> = $Result.GetResult<Prisma.$NotificationPreferencePayload, S>
+
+  type NotificationPreferenceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NotificationPreferenceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NotificationPreferenceCountAggregateInputType | true
+    }
+
+  export interface NotificationPreferenceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['NotificationPreference'], meta: { name: 'NotificationPreference' } }
+    /**
+     * Find zero or one NotificationPreference that matches the filter.
+     * @param {NotificationPreferenceFindUniqueArgs} args - Arguments to find a NotificationPreference
+     * @example
+     * // Get one NotificationPreference
+     * const notificationPreference = await prisma.notificationPreference.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NotificationPreferenceFindUniqueArgs>(args: SelectSubset<T, NotificationPreferenceFindUniqueArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one NotificationPreference that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NotificationPreferenceFindUniqueOrThrowArgs} args - Arguments to find a NotificationPreference
+     * @example
+     * // Get one NotificationPreference
+     * const notificationPreference = await prisma.notificationPreference.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NotificationPreferenceFindUniqueOrThrowArgs>(args: SelectSubset<T, NotificationPreferenceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first NotificationPreference that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceFindFirstArgs} args - Arguments to find a NotificationPreference
+     * @example
+     * // Get one NotificationPreference
+     * const notificationPreference = await prisma.notificationPreference.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NotificationPreferenceFindFirstArgs>(args?: SelectSubset<T, NotificationPreferenceFindFirstArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first NotificationPreference that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceFindFirstOrThrowArgs} args - Arguments to find a NotificationPreference
+     * @example
+     * // Get one NotificationPreference
+     * const notificationPreference = await prisma.notificationPreference.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NotificationPreferenceFindFirstOrThrowArgs>(args?: SelectSubset<T, NotificationPreferenceFindFirstOrThrowArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more NotificationPreferences that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all NotificationPreferences
+     * const notificationPreferences = await prisma.notificationPreference.findMany()
+     * 
+     * // Get first 10 NotificationPreferences
+     * const notificationPreferences = await prisma.notificationPreference.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const notificationPreferenceWithIdOnly = await prisma.notificationPreference.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NotificationPreferenceFindManyArgs>(args?: SelectSubset<T, NotificationPreferenceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a NotificationPreference.
+     * @param {NotificationPreferenceCreateArgs} args - Arguments to create a NotificationPreference.
+     * @example
+     * // Create one NotificationPreference
+     * const NotificationPreference = await prisma.notificationPreference.create({
+     *   data: {
+     *     // ... data to create a NotificationPreference
+     *   }
+     * })
+     * 
+     */
+    create<T extends NotificationPreferenceCreateArgs>(args: SelectSubset<T, NotificationPreferenceCreateArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many NotificationPreferences.
+     * @param {NotificationPreferenceCreateManyArgs} args - Arguments to create many NotificationPreferences.
+     * @example
+     * // Create many NotificationPreferences
+     * const notificationPreference = await prisma.notificationPreference.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NotificationPreferenceCreateManyArgs>(args?: SelectSubset<T, NotificationPreferenceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many NotificationPreferences and returns the data saved in the database.
+     * @param {NotificationPreferenceCreateManyAndReturnArgs} args - Arguments to create many NotificationPreferences.
+     * @example
+     * // Create many NotificationPreferences
+     * const notificationPreference = await prisma.notificationPreference.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many NotificationPreferences and only return the `id`
+     * const notificationPreferenceWithIdOnly = await prisma.notificationPreference.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NotificationPreferenceCreateManyAndReturnArgs>(args?: SelectSubset<T, NotificationPreferenceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a NotificationPreference.
+     * @param {NotificationPreferenceDeleteArgs} args - Arguments to delete one NotificationPreference.
+     * @example
+     * // Delete one NotificationPreference
+     * const NotificationPreference = await prisma.notificationPreference.delete({
+     *   where: {
+     *     // ... filter to delete one NotificationPreference
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NotificationPreferenceDeleteArgs>(args: SelectSubset<T, NotificationPreferenceDeleteArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one NotificationPreference.
+     * @param {NotificationPreferenceUpdateArgs} args - Arguments to update one NotificationPreference.
+     * @example
+     * // Update one NotificationPreference
+     * const notificationPreference = await prisma.notificationPreference.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NotificationPreferenceUpdateArgs>(args: SelectSubset<T, NotificationPreferenceUpdateArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more NotificationPreferences.
+     * @param {NotificationPreferenceDeleteManyArgs} args - Arguments to filter NotificationPreferences to delete.
+     * @example
+     * // Delete a few NotificationPreferences
+     * const { count } = await prisma.notificationPreference.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NotificationPreferenceDeleteManyArgs>(args?: SelectSubset<T, NotificationPreferenceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NotificationPreferences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many NotificationPreferences
+     * const notificationPreference = await prisma.notificationPreference.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NotificationPreferenceUpdateManyArgs>(args: SelectSubset<T, NotificationPreferenceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NotificationPreferences and returns the data updated in the database.
+     * @param {NotificationPreferenceUpdateManyAndReturnArgs} args - Arguments to update many NotificationPreferences.
+     * @example
+     * // Update many NotificationPreferences
+     * const notificationPreference = await prisma.notificationPreference.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more NotificationPreferences and only return the `id`
+     * const notificationPreferenceWithIdOnly = await prisma.notificationPreference.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NotificationPreferenceUpdateManyAndReturnArgs>(args: SelectSubset<T, NotificationPreferenceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one NotificationPreference.
+     * @param {NotificationPreferenceUpsertArgs} args - Arguments to update or create a NotificationPreference.
+     * @example
+     * // Update or create a NotificationPreference
+     * const notificationPreference = await prisma.notificationPreference.upsert({
+     *   create: {
+     *     // ... data to create a NotificationPreference
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the NotificationPreference we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NotificationPreferenceUpsertArgs>(args: SelectSubset<T, NotificationPreferenceUpsertArgs<ExtArgs>>): Prisma__NotificationPreferenceClient<$Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of NotificationPreferences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceCountArgs} args - Arguments to filter NotificationPreferences to count.
+     * @example
+     * // Count the number of NotificationPreferences
+     * const count = await prisma.notificationPreference.count({
+     *   where: {
+     *     // ... the filter for the NotificationPreferences we want to count
+     *   }
+     * })
+    **/
+    count<T extends NotificationPreferenceCountArgs>(
+      args?: Subset<T, NotificationPreferenceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotificationPreferenceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a NotificationPreference.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotificationPreferenceAggregateArgs>(args: Subset<T, NotificationPreferenceAggregateArgs>): Prisma.PrismaPromise<GetNotificationPreferenceAggregateType<T>>
+
+    /**
+     * Group by NotificationPreference.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationPreferenceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NotificationPreferenceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NotificationPreferenceGroupByArgs['orderBy'] }
+        : { orderBy?: NotificationPreferenceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NotificationPreferenceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationPreferenceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the NotificationPreference model
+   */
+  readonly fields: NotificationPreferenceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for NotificationPreference.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NotificationPreferenceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the NotificationPreference model
+   */ 
+  interface NotificationPreferenceFieldRefs {
+    readonly id: FieldRef<"NotificationPreference", 'String'>
+    readonly userId: FieldRef<"NotificationPreference", 'String'>
+    readonly emailEnabled: FieldRef<"NotificationPreference", 'Boolean'>
+    readonly smsEnabled: FieldRef<"NotificationPreference", 'Boolean'>
+    readonly whatsappEnabled: FieldRef<"NotificationPreference", 'Boolean'>
+    readonly appointmentReminder: FieldRef<"NotificationPreference", 'Boolean'>
+    readonly followUpReminder: FieldRef<"NotificationPreference", 'Boolean'>
+    readonly marketingEmails: FieldRef<"NotificationPreference", 'Boolean'>
+    readonly updatedAt: FieldRef<"NotificationPreference", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * NotificationPreference findUnique
+   */
+  export type NotificationPreferenceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationPreference to fetch.
+     */
+    where: NotificationPreferenceWhereUniqueInput
+  }
+
+  /**
+   * NotificationPreference findUniqueOrThrow
+   */
+  export type NotificationPreferenceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationPreference to fetch.
+     */
+    where: NotificationPreferenceWhereUniqueInput
+  }
+
+  /**
+   * NotificationPreference findFirst
+   */
+  export type NotificationPreferenceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationPreference to fetch.
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationPreferences to fetch.
+     */
+    orderBy?: NotificationPreferenceOrderByWithRelationInput | NotificationPreferenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NotificationPreferences.
+     */
+    cursor?: NotificationPreferenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationPreferences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationPreferences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NotificationPreferences.
+     */
+    distinct?: NotificationPreferenceScalarFieldEnum | NotificationPreferenceScalarFieldEnum[]
+  }
+
+  /**
+   * NotificationPreference findFirstOrThrow
+   */
+  export type NotificationPreferenceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationPreference to fetch.
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationPreferences to fetch.
+     */
+    orderBy?: NotificationPreferenceOrderByWithRelationInput | NotificationPreferenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NotificationPreferences.
+     */
+    cursor?: NotificationPreferenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationPreferences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationPreferences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NotificationPreferences.
+     */
+    distinct?: NotificationPreferenceScalarFieldEnum | NotificationPreferenceScalarFieldEnum[]
+  }
+
+  /**
+   * NotificationPreference findMany
+   */
+  export type NotificationPreferenceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationPreferences to fetch.
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationPreferences to fetch.
+     */
+    orderBy?: NotificationPreferenceOrderByWithRelationInput | NotificationPreferenceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing NotificationPreferences.
+     */
+    cursor?: NotificationPreferenceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationPreferences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationPreferences.
+     */
+    skip?: number
+    distinct?: NotificationPreferenceScalarFieldEnum | NotificationPreferenceScalarFieldEnum[]
+  }
+
+  /**
+   * NotificationPreference create
+   */
+  export type NotificationPreferenceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a NotificationPreference.
+     */
+    data: XOR<NotificationPreferenceCreateInput, NotificationPreferenceUncheckedCreateInput>
+  }
+
+  /**
+   * NotificationPreference createMany
+   */
+  export type NotificationPreferenceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many NotificationPreferences.
+     */
+    data: NotificationPreferenceCreateManyInput | NotificationPreferenceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * NotificationPreference createManyAndReturn
+   */
+  export type NotificationPreferenceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * The data used to create many NotificationPreferences.
+     */
+    data: NotificationPreferenceCreateManyInput | NotificationPreferenceCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * NotificationPreference update
+   */
+  export type NotificationPreferenceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a NotificationPreference.
+     */
+    data: XOR<NotificationPreferenceUpdateInput, NotificationPreferenceUncheckedUpdateInput>
+    /**
+     * Choose, which NotificationPreference to update.
+     */
+    where: NotificationPreferenceWhereUniqueInput
+  }
+
+  /**
+   * NotificationPreference updateMany
+   */
+  export type NotificationPreferenceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update NotificationPreferences.
+     */
+    data: XOR<NotificationPreferenceUpdateManyMutationInput, NotificationPreferenceUncheckedUpdateManyInput>
+    /**
+     * Filter which NotificationPreferences to update
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * Limit how many NotificationPreferences to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * NotificationPreference updateManyAndReturn
+   */
+  export type NotificationPreferenceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * The data used to update NotificationPreferences.
+     */
+    data: XOR<NotificationPreferenceUpdateManyMutationInput, NotificationPreferenceUncheckedUpdateManyInput>
+    /**
+     * Filter which NotificationPreferences to update
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * Limit how many NotificationPreferences to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * NotificationPreference upsert
+   */
+  export type NotificationPreferenceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the NotificationPreference to update in case it exists.
+     */
+    where: NotificationPreferenceWhereUniqueInput
+    /**
+     * In case the NotificationPreference found by the `where` argument doesn't exist, create a new NotificationPreference with this data.
+     */
+    create: XOR<NotificationPreferenceCreateInput, NotificationPreferenceUncheckedCreateInput>
+    /**
+     * In case the NotificationPreference was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NotificationPreferenceUpdateInput, NotificationPreferenceUncheckedUpdateInput>
+  }
+
+  /**
+   * NotificationPreference delete
+   */
+  export type NotificationPreferenceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+    /**
+     * Filter which NotificationPreference to delete.
+     */
+    where: NotificationPreferenceWhereUniqueInput
+  }
+
+  /**
+   * NotificationPreference deleteMany
+   */
+  export type NotificationPreferenceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NotificationPreferences to delete
+     */
+    where?: NotificationPreferenceWhereInput
+    /**
+     * Limit how many NotificationPreferences to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * NotificationPreference without action
+   */
+  export type NotificationPreferenceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationPreference
+     */
+    select?: NotificationPreferenceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationPreference
+     */
+    omit?: NotificationPreferenceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationPreferenceInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9257,6 +11732,37 @@ export namespace Prisma {
   };
 
   export type AccessPolicyScalarFieldEnum = (typeof AccessPolicyScalarFieldEnum)[keyof typeof AccessPolicyScalarFieldEnum]
+
+
+  export const FollowUpReminderScalarFieldEnum: {
+    id: 'id',
+    doctorId: 'doctorId',
+    patientName: 'patientName',
+    patientId: 'patientId',
+    dueDate: 'dueDate',
+    description: 'description',
+    priority: 'priority',
+    completed: 'completed',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FollowUpReminderScalarFieldEnum = (typeof FollowUpReminderScalarFieldEnum)[keyof typeof FollowUpReminderScalarFieldEnum]
+
+
+  export const NotificationPreferenceScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    emailEnabled: 'emailEnabled',
+    smsEnabled: 'smsEnabled',
+    whatsappEnabled: 'whatsappEnabled',
+    appointmentReminder: 'appointmentReminder',
+    followUpReminder: 'followUpReminder',
+    marketingEmails: 'marketingEmails',
+    updatedAt: 'updatedAt'
+  };
+
+  export type NotificationPreferenceScalarFieldEnum = (typeof NotificationPreferenceScalarFieldEnum)[keyof typeof NotificationPreferenceScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -9426,6 +11932,7 @@ export namespace Prisma {
     admin?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
     doctor?: XOR<DoctorNullableScalarRelationFilter, DoctorWhereInput> | null
     patient?: XOR<PatientNullableScalarRelationFilter, PatientWhereInput> | null
+    notificationPrefs?: XOR<NotificationPreferenceNullableScalarRelationFilter, NotificationPreferenceWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -9439,6 +11946,7 @@ export namespace Prisma {
     admin?: AdminOrderByWithRelationInput
     doctor?: DoctorOrderByWithRelationInput
     patient?: PatientOrderByWithRelationInput
+    notificationPrefs?: NotificationPreferenceOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -9455,6 +11963,7 @@ export namespace Prisma {
     admin?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
     doctor?: XOR<DoctorNullableScalarRelationFilter, DoctorWhereInput> | null
     patient?: XOR<PatientNullableScalarRelationFilter, PatientWhereInput> | null
+    notificationPrefs?: XOR<NotificationPreferenceNullableScalarRelationFilter, NotificationPreferenceWhereInput> | null
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -9538,6 +12047,7 @@ export namespace Prisma {
     licenseNumber?: StringFilter<"Doctor"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     appointments?: AppointmentListRelationFilter
+    followUpReminders?: FollowUpReminderListRelationFilter
   }
 
   export type DoctorOrderByWithRelationInput = {
@@ -9547,6 +12057,7 @@ export namespace Prisma {
     licenseNumber?: SortOrder
     user?: UserOrderByWithRelationInput
     appointments?: AppointmentOrderByRelationAggregateInput
+    followUpReminders?: FollowUpReminderOrderByRelationAggregateInput
   }
 
   export type DoctorWhereUniqueInput = Prisma.AtLeast<{
@@ -9559,6 +12070,7 @@ export namespace Prisma {
     specialization?: StringFilter<"Doctor"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     appointments?: AppointmentListRelationFilter
+    followUpReminders?: FollowUpReminderListRelationFilter
   }, "id" | "userId" | "licenseNumber">
 
   export type DoctorOrderByWithAggregationInput = {
@@ -9872,6 +12384,161 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"AccessPolicy"> | Date | string
   }
 
+  export type FollowUpReminderWhereInput = {
+    AND?: FollowUpReminderWhereInput | FollowUpReminderWhereInput[]
+    OR?: FollowUpReminderWhereInput[]
+    NOT?: FollowUpReminderWhereInput | FollowUpReminderWhereInput[]
+    id?: StringFilter<"FollowUpReminder"> | string
+    doctorId?: StringFilter<"FollowUpReminder"> | string
+    patientName?: StringFilter<"FollowUpReminder"> | string
+    patientId?: StringFilter<"FollowUpReminder"> | string
+    dueDate?: DateTimeFilter<"FollowUpReminder"> | Date | string
+    description?: StringFilter<"FollowUpReminder"> | string
+    priority?: StringFilter<"FollowUpReminder"> | string
+    completed?: BoolFilter<"FollowUpReminder"> | boolean
+    createdAt?: DateTimeFilter<"FollowUpReminder"> | Date | string
+    updatedAt?: DateTimeFilter<"FollowUpReminder"> | Date | string
+    doctor?: XOR<DoctorScalarRelationFilter, DoctorWhereInput>
+  }
+
+  export type FollowUpReminderOrderByWithRelationInput = {
+    id?: SortOrder
+    doctorId?: SortOrder
+    patientName?: SortOrder
+    patientId?: SortOrder
+    dueDate?: SortOrder
+    description?: SortOrder
+    priority?: SortOrder
+    completed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    doctor?: DoctorOrderByWithRelationInput
+  }
+
+  export type FollowUpReminderWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FollowUpReminderWhereInput | FollowUpReminderWhereInput[]
+    OR?: FollowUpReminderWhereInput[]
+    NOT?: FollowUpReminderWhereInput | FollowUpReminderWhereInput[]
+    doctorId?: StringFilter<"FollowUpReminder"> | string
+    patientName?: StringFilter<"FollowUpReminder"> | string
+    patientId?: StringFilter<"FollowUpReminder"> | string
+    dueDate?: DateTimeFilter<"FollowUpReminder"> | Date | string
+    description?: StringFilter<"FollowUpReminder"> | string
+    priority?: StringFilter<"FollowUpReminder"> | string
+    completed?: BoolFilter<"FollowUpReminder"> | boolean
+    createdAt?: DateTimeFilter<"FollowUpReminder"> | Date | string
+    updatedAt?: DateTimeFilter<"FollowUpReminder"> | Date | string
+    doctor?: XOR<DoctorScalarRelationFilter, DoctorWhereInput>
+  }, "id">
+
+  export type FollowUpReminderOrderByWithAggregationInput = {
+    id?: SortOrder
+    doctorId?: SortOrder
+    patientName?: SortOrder
+    patientId?: SortOrder
+    dueDate?: SortOrder
+    description?: SortOrder
+    priority?: SortOrder
+    completed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FollowUpReminderCountOrderByAggregateInput
+    _max?: FollowUpReminderMaxOrderByAggregateInput
+    _min?: FollowUpReminderMinOrderByAggregateInput
+  }
+
+  export type FollowUpReminderScalarWhereWithAggregatesInput = {
+    AND?: FollowUpReminderScalarWhereWithAggregatesInput | FollowUpReminderScalarWhereWithAggregatesInput[]
+    OR?: FollowUpReminderScalarWhereWithAggregatesInput[]
+    NOT?: FollowUpReminderScalarWhereWithAggregatesInput | FollowUpReminderScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FollowUpReminder"> | string
+    doctorId?: StringWithAggregatesFilter<"FollowUpReminder"> | string
+    patientName?: StringWithAggregatesFilter<"FollowUpReminder"> | string
+    patientId?: StringWithAggregatesFilter<"FollowUpReminder"> | string
+    dueDate?: DateTimeWithAggregatesFilter<"FollowUpReminder"> | Date | string
+    description?: StringWithAggregatesFilter<"FollowUpReminder"> | string
+    priority?: StringWithAggregatesFilter<"FollowUpReminder"> | string
+    completed?: BoolWithAggregatesFilter<"FollowUpReminder"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"FollowUpReminder"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FollowUpReminder"> | Date | string
+  }
+
+  export type NotificationPreferenceWhereInput = {
+    AND?: NotificationPreferenceWhereInput | NotificationPreferenceWhereInput[]
+    OR?: NotificationPreferenceWhereInput[]
+    NOT?: NotificationPreferenceWhereInput | NotificationPreferenceWhereInput[]
+    id?: StringFilter<"NotificationPreference"> | string
+    userId?: StringFilter<"NotificationPreference"> | string
+    emailEnabled?: BoolFilter<"NotificationPreference"> | boolean
+    smsEnabled?: BoolFilter<"NotificationPreference"> | boolean
+    whatsappEnabled?: BoolFilter<"NotificationPreference"> | boolean
+    appointmentReminder?: BoolFilter<"NotificationPreference"> | boolean
+    followUpReminder?: BoolFilter<"NotificationPreference"> | boolean
+    marketingEmails?: BoolFilter<"NotificationPreference"> | boolean
+    updatedAt?: DateTimeFilter<"NotificationPreference"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type NotificationPreferenceOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    emailEnabled?: SortOrder
+    smsEnabled?: SortOrder
+    whatsappEnabled?: SortOrder
+    appointmentReminder?: SortOrder
+    followUpReminder?: SortOrder
+    marketingEmails?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type NotificationPreferenceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: NotificationPreferenceWhereInput | NotificationPreferenceWhereInput[]
+    OR?: NotificationPreferenceWhereInput[]
+    NOT?: NotificationPreferenceWhereInput | NotificationPreferenceWhereInput[]
+    emailEnabled?: BoolFilter<"NotificationPreference"> | boolean
+    smsEnabled?: BoolFilter<"NotificationPreference"> | boolean
+    whatsappEnabled?: BoolFilter<"NotificationPreference"> | boolean
+    appointmentReminder?: BoolFilter<"NotificationPreference"> | boolean
+    followUpReminder?: BoolFilter<"NotificationPreference"> | boolean
+    marketingEmails?: BoolFilter<"NotificationPreference"> | boolean
+    updatedAt?: DateTimeFilter<"NotificationPreference"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type NotificationPreferenceOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    emailEnabled?: SortOrder
+    smsEnabled?: SortOrder
+    whatsappEnabled?: SortOrder
+    appointmentReminder?: SortOrder
+    followUpReminder?: SortOrder
+    marketingEmails?: SortOrder
+    updatedAt?: SortOrder
+    _count?: NotificationPreferenceCountOrderByAggregateInput
+    _max?: NotificationPreferenceMaxOrderByAggregateInput
+    _min?: NotificationPreferenceMinOrderByAggregateInput
+  }
+
+  export type NotificationPreferenceScalarWhereWithAggregatesInput = {
+    AND?: NotificationPreferenceScalarWhereWithAggregatesInput | NotificationPreferenceScalarWhereWithAggregatesInput[]
+    OR?: NotificationPreferenceScalarWhereWithAggregatesInput[]
+    NOT?: NotificationPreferenceScalarWhereWithAggregatesInput | NotificationPreferenceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"NotificationPreference"> | string
+    userId?: StringWithAggregatesFilter<"NotificationPreference"> | string
+    emailEnabled?: BoolWithAggregatesFilter<"NotificationPreference"> | boolean
+    smsEnabled?: BoolWithAggregatesFilter<"NotificationPreference"> | boolean
+    whatsappEnabled?: BoolWithAggregatesFilter<"NotificationPreference"> | boolean
+    appointmentReminder?: BoolWithAggregatesFilter<"NotificationPreference"> | boolean
+    followUpReminder?: BoolWithAggregatesFilter<"NotificationPreference"> | boolean
+    marketingEmails?: BoolWithAggregatesFilter<"NotificationPreference"> | boolean
+    updatedAt?: DateTimeWithAggregatesFilter<"NotificationPreference"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -9883,6 +12550,7 @@ export namespace Prisma {
     admin?: AdminCreateNestedOneWithoutUserInput
     doctor?: DoctorCreateNestedOneWithoutUserInput
     patient?: PatientCreateNestedOneWithoutUserInput
+    notificationPrefs?: NotificationPreferenceCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -9896,6 +12564,7 @@ export namespace Prisma {
     admin?: AdminUncheckedCreateNestedOneWithoutUserInput
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
     patient?: PatientUncheckedCreateNestedOneWithoutUserInput
+    notificationPrefs?: NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -9909,6 +12578,7 @@ export namespace Prisma {
     admin?: AdminUpdateOneWithoutUserNestedInput
     doctor?: DoctorUpdateOneWithoutUserNestedInput
     patient?: PatientUpdateOneWithoutUserNestedInput
+    notificationPrefs?: NotificationPreferenceUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -9922,6 +12592,7 @@ export namespace Prisma {
     admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
     patient?: PatientUncheckedUpdateOneWithoutUserNestedInput
+    notificationPrefs?: NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -10001,6 +12672,7 @@ export namespace Prisma {
     licenseNumber: string
     user: UserCreateNestedOneWithoutDoctorInput
     appointments?: AppointmentCreateNestedManyWithoutDoctorInput
+    followUpReminders?: FollowUpReminderCreateNestedManyWithoutDoctorInput
   }
 
   export type DoctorUncheckedCreateInput = {
@@ -10009,6 +12681,7 @@ export namespace Prisma {
     specialization: string
     licenseNumber: string
     appointments?: AppointmentUncheckedCreateNestedManyWithoutDoctorInput
+    followUpReminders?: FollowUpReminderUncheckedCreateNestedManyWithoutDoctorInput
   }
 
   export type DoctorUpdateInput = {
@@ -10017,6 +12690,7 @@ export namespace Prisma {
     licenseNumber?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutDoctorNestedInput
     appointments?: AppointmentUpdateManyWithoutDoctorNestedInput
+    followUpReminders?: FollowUpReminderUpdateManyWithoutDoctorNestedInput
   }
 
   export type DoctorUncheckedUpdateInput = {
@@ -10025,6 +12699,7 @@ export namespace Prisma {
     specialization?: StringFieldUpdateOperationsInput | string
     licenseNumber?: StringFieldUpdateOperationsInput | string
     appointments?: AppointmentUncheckedUpdateManyWithoutDoctorNestedInput
+    followUpReminders?: FollowUpReminderUncheckedUpdateManyWithoutDoctorNestedInput
   }
 
   export type DoctorCreateManyInput = {
@@ -10366,6 +13041,179 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type FollowUpReminderCreateInput = {
+    id?: string
+    patientName: string
+    patientId: string
+    dueDate: Date | string
+    description: string
+    priority?: string
+    completed?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    doctor: DoctorCreateNestedOneWithoutFollowUpRemindersInput
+  }
+
+  export type FollowUpReminderUncheckedCreateInput = {
+    id?: string
+    doctorId: string
+    patientName: string
+    patientId: string
+    dueDate: Date | string
+    description: string
+    priority?: string
+    completed?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FollowUpReminderUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    patientName?: StringFieldUpdateOperationsInput | string
+    patientId?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    doctor?: DoctorUpdateOneRequiredWithoutFollowUpRemindersNestedInput
+  }
+
+  export type FollowUpReminderUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    doctorId?: StringFieldUpdateOperationsInput | string
+    patientName?: StringFieldUpdateOperationsInput | string
+    patientId?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowUpReminderCreateManyInput = {
+    id?: string
+    doctorId: string
+    patientName: string
+    patientId: string
+    dueDate: Date | string
+    description: string
+    priority?: string
+    completed?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FollowUpReminderUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    patientName?: StringFieldUpdateOperationsInput | string
+    patientId?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowUpReminderUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    doctorId?: StringFieldUpdateOperationsInput | string
+    patientName?: StringFieldUpdateOperationsInput | string
+    patientId?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationPreferenceCreateInput = {
+    id?: string
+    emailEnabled?: boolean
+    smsEnabled?: boolean
+    whatsappEnabled?: boolean
+    appointmentReminder?: boolean
+    followUpReminder?: boolean
+    marketingEmails?: boolean
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutNotificationPrefsInput
+  }
+
+  export type NotificationPreferenceUncheckedCreateInput = {
+    id?: string
+    userId: string
+    emailEnabled?: boolean
+    smsEnabled?: boolean
+    whatsappEnabled?: boolean
+    appointmentReminder?: boolean
+    followUpReminder?: boolean
+    marketingEmails?: boolean
+    updatedAt?: Date | string
+  }
+
+  export type NotificationPreferenceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    emailEnabled?: BoolFieldUpdateOperationsInput | boolean
+    smsEnabled?: BoolFieldUpdateOperationsInput | boolean
+    whatsappEnabled?: BoolFieldUpdateOperationsInput | boolean
+    appointmentReminder?: BoolFieldUpdateOperationsInput | boolean
+    followUpReminder?: BoolFieldUpdateOperationsInput | boolean
+    marketingEmails?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutNotificationPrefsNestedInput
+  }
+
+  export type NotificationPreferenceUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    emailEnabled?: BoolFieldUpdateOperationsInput | boolean
+    smsEnabled?: BoolFieldUpdateOperationsInput | boolean
+    whatsappEnabled?: BoolFieldUpdateOperationsInput | boolean
+    appointmentReminder?: BoolFieldUpdateOperationsInput | boolean
+    followUpReminder?: BoolFieldUpdateOperationsInput | boolean
+    marketingEmails?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationPreferenceCreateManyInput = {
+    id?: string
+    userId: string
+    emailEnabled?: boolean
+    smsEnabled?: boolean
+    whatsappEnabled?: boolean
+    appointmentReminder?: boolean
+    followUpReminder?: boolean
+    marketingEmails?: boolean
+    updatedAt?: Date | string
+  }
+
+  export type NotificationPreferenceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    emailEnabled?: BoolFieldUpdateOperationsInput | boolean
+    smsEnabled?: BoolFieldUpdateOperationsInput | boolean
+    whatsappEnabled?: BoolFieldUpdateOperationsInput | boolean
+    appointmentReminder?: BoolFieldUpdateOperationsInput | boolean
+    followUpReminder?: BoolFieldUpdateOperationsInput | boolean
+    marketingEmails?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationPreferenceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    emailEnabled?: BoolFieldUpdateOperationsInput | boolean
+    smsEnabled?: BoolFieldUpdateOperationsInput | boolean
+    whatsappEnabled?: BoolFieldUpdateOperationsInput | boolean
+    appointmentReminder?: BoolFieldUpdateOperationsInput | boolean
+    followUpReminder?: BoolFieldUpdateOperationsInput | boolean
+    marketingEmails?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -10412,6 +13260,11 @@ export namespace Prisma {
   export type PatientNullableScalarRelationFilter = {
     is?: PatientWhereInput | null
     isNot?: PatientWhereInput | null
+  }
+
+  export type NotificationPreferenceNullableScalarRelationFilter = {
+    is?: NotificationPreferenceWhereInput | null
+    isNot?: NotificationPreferenceWhereInput | null
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -10515,7 +13368,17 @@ export namespace Prisma {
     none?: AppointmentWhereInput
   }
 
+  export type FollowUpReminderListRelationFilter = {
+    every?: FollowUpReminderWhereInput
+    some?: FollowUpReminderWhereInput
+    none?: FollowUpReminderWhereInput
+  }
+
   export type AppointmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FollowUpReminderOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10829,6 +13692,81 @@ export namespace Prisma {
     _max?: NestedEnumPolicyEffectFilter<$PrismaModel>
   }
 
+  export type FollowUpReminderCountOrderByAggregateInput = {
+    id?: SortOrder
+    doctorId?: SortOrder
+    patientName?: SortOrder
+    patientId?: SortOrder
+    dueDate?: SortOrder
+    description?: SortOrder
+    priority?: SortOrder
+    completed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FollowUpReminderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    doctorId?: SortOrder
+    patientName?: SortOrder
+    patientId?: SortOrder
+    dueDate?: SortOrder
+    description?: SortOrder
+    priority?: SortOrder
+    completed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FollowUpReminderMinOrderByAggregateInput = {
+    id?: SortOrder
+    doctorId?: SortOrder
+    patientName?: SortOrder
+    patientId?: SortOrder
+    dueDate?: SortOrder
+    description?: SortOrder
+    priority?: SortOrder
+    completed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NotificationPreferenceCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    emailEnabled?: SortOrder
+    smsEnabled?: SortOrder
+    whatsappEnabled?: SortOrder
+    appointmentReminder?: SortOrder
+    followUpReminder?: SortOrder
+    marketingEmails?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NotificationPreferenceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    emailEnabled?: SortOrder
+    smsEnabled?: SortOrder
+    whatsappEnabled?: SortOrder
+    appointmentReminder?: SortOrder
+    followUpReminder?: SortOrder
+    marketingEmails?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NotificationPreferenceMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    emailEnabled?: SortOrder
+    smsEnabled?: SortOrder
+    whatsappEnabled?: SortOrder
+    appointmentReminder?: SortOrder
+    followUpReminder?: SortOrder
+    marketingEmails?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type AdminCreateNestedOneWithoutUserInput = {
     create?: XOR<AdminCreateWithoutUserInput, AdminUncheckedCreateWithoutUserInput>
     connectOrCreate?: AdminCreateOrConnectWithoutUserInput
@@ -10847,6 +13785,12 @@ export namespace Prisma {
     connect?: PatientWhereUniqueInput
   }
 
+  export type NotificationPreferenceCreateNestedOneWithoutUserInput = {
+    create?: XOR<NotificationPreferenceCreateWithoutUserInput, NotificationPreferenceUncheckedCreateWithoutUserInput>
+    connectOrCreate?: NotificationPreferenceCreateOrConnectWithoutUserInput
+    connect?: NotificationPreferenceWhereUniqueInput
+  }
+
   export type AdminUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<AdminCreateWithoutUserInput, AdminUncheckedCreateWithoutUserInput>
     connectOrCreate?: AdminCreateOrConnectWithoutUserInput
@@ -10863,6 +13807,12 @@ export namespace Prisma {
     create?: XOR<PatientCreateWithoutUserInput, PatientUncheckedCreateWithoutUserInput>
     connectOrCreate?: PatientCreateOrConnectWithoutUserInput
     connect?: PatientWhereUniqueInput
+  }
+
+  export type NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<NotificationPreferenceCreateWithoutUserInput, NotificationPreferenceUncheckedCreateWithoutUserInput>
+    connectOrCreate?: NotificationPreferenceCreateOrConnectWithoutUserInput
+    connect?: NotificationPreferenceWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -10907,6 +13857,16 @@ export namespace Prisma {
     update?: XOR<XOR<PatientUpdateToOneWithWhereWithoutUserInput, PatientUpdateWithoutUserInput>, PatientUncheckedUpdateWithoutUserInput>
   }
 
+  export type NotificationPreferenceUpdateOneWithoutUserNestedInput = {
+    create?: XOR<NotificationPreferenceCreateWithoutUserInput, NotificationPreferenceUncheckedCreateWithoutUserInput>
+    connectOrCreate?: NotificationPreferenceCreateOrConnectWithoutUserInput
+    upsert?: NotificationPreferenceUpsertWithoutUserInput
+    disconnect?: NotificationPreferenceWhereInput | boolean
+    delete?: NotificationPreferenceWhereInput | boolean
+    connect?: NotificationPreferenceWhereUniqueInput
+    update?: XOR<XOR<NotificationPreferenceUpdateToOneWithWhereWithoutUserInput, NotificationPreferenceUpdateWithoutUserInput>, NotificationPreferenceUncheckedUpdateWithoutUserInput>
+  }
+
   export type AdminUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<AdminCreateWithoutUserInput, AdminUncheckedCreateWithoutUserInput>
     connectOrCreate?: AdminCreateOrConnectWithoutUserInput
@@ -10937,6 +13897,16 @@ export namespace Prisma {
     update?: XOR<XOR<PatientUpdateToOneWithWhereWithoutUserInput, PatientUpdateWithoutUserInput>, PatientUncheckedUpdateWithoutUserInput>
   }
 
+  export type NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<NotificationPreferenceCreateWithoutUserInput, NotificationPreferenceUncheckedCreateWithoutUserInput>
+    connectOrCreate?: NotificationPreferenceCreateOrConnectWithoutUserInput
+    upsert?: NotificationPreferenceUpsertWithoutUserInput
+    disconnect?: NotificationPreferenceWhereInput | boolean
+    delete?: NotificationPreferenceWhereInput | boolean
+    connect?: NotificationPreferenceWhereUniqueInput
+    update?: XOR<XOR<NotificationPreferenceUpdateToOneWithWhereWithoutUserInput, NotificationPreferenceUpdateWithoutUserInput>, NotificationPreferenceUncheckedUpdateWithoutUserInput>
+  }
+
   export type UserCreateNestedOneWithoutAdminInput = {
     create?: XOR<UserCreateWithoutAdminInput, UserUncheckedCreateWithoutAdminInput>
     connectOrCreate?: UserCreateOrConnectWithoutAdminInput
@@ -10964,11 +13934,25 @@ export namespace Prisma {
     connect?: AppointmentWhereUniqueInput | AppointmentWhereUniqueInput[]
   }
 
+  export type FollowUpReminderCreateNestedManyWithoutDoctorInput = {
+    create?: XOR<FollowUpReminderCreateWithoutDoctorInput, FollowUpReminderUncheckedCreateWithoutDoctorInput> | FollowUpReminderCreateWithoutDoctorInput[] | FollowUpReminderUncheckedCreateWithoutDoctorInput[]
+    connectOrCreate?: FollowUpReminderCreateOrConnectWithoutDoctorInput | FollowUpReminderCreateOrConnectWithoutDoctorInput[]
+    createMany?: FollowUpReminderCreateManyDoctorInputEnvelope
+    connect?: FollowUpReminderWhereUniqueInput | FollowUpReminderWhereUniqueInput[]
+  }
+
   export type AppointmentUncheckedCreateNestedManyWithoutDoctorInput = {
     create?: XOR<AppointmentCreateWithoutDoctorInput, AppointmentUncheckedCreateWithoutDoctorInput> | AppointmentCreateWithoutDoctorInput[] | AppointmentUncheckedCreateWithoutDoctorInput[]
     connectOrCreate?: AppointmentCreateOrConnectWithoutDoctorInput | AppointmentCreateOrConnectWithoutDoctorInput[]
     createMany?: AppointmentCreateManyDoctorInputEnvelope
     connect?: AppointmentWhereUniqueInput | AppointmentWhereUniqueInput[]
+  }
+
+  export type FollowUpReminderUncheckedCreateNestedManyWithoutDoctorInput = {
+    create?: XOR<FollowUpReminderCreateWithoutDoctorInput, FollowUpReminderUncheckedCreateWithoutDoctorInput> | FollowUpReminderCreateWithoutDoctorInput[] | FollowUpReminderUncheckedCreateWithoutDoctorInput[]
+    connectOrCreate?: FollowUpReminderCreateOrConnectWithoutDoctorInput | FollowUpReminderCreateOrConnectWithoutDoctorInput[]
+    createMany?: FollowUpReminderCreateManyDoctorInputEnvelope
+    connect?: FollowUpReminderWhereUniqueInput | FollowUpReminderWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutDoctorNestedInput = {
@@ -10993,6 +13977,20 @@ export namespace Prisma {
     deleteMany?: AppointmentScalarWhereInput | AppointmentScalarWhereInput[]
   }
 
+  export type FollowUpReminderUpdateManyWithoutDoctorNestedInput = {
+    create?: XOR<FollowUpReminderCreateWithoutDoctorInput, FollowUpReminderUncheckedCreateWithoutDoctorInput> | FollowUpReminderCreateWithoutDoctorInput[] | FollowUpReminderUncheckedCreateWithoutDoctorInput[]
+    connectOrCreate?: FollowUpReminderCreateOrConnectWithoutDoctorInput | FollowUpReminderCreateOrConnectWithoutDoctorInput[]
+    upsert?: FollowUpReminderUpsertWithWhereUniqueWithoutDoctorInput | FollowUpReminderUpsertWithWhereUniqueWithoutDoctorInput[]
+    createMany?: FollowUpReminderCreateManyDoctorInputEnvelope
+    set?: FollowUpReminderWhereUniqueInput | FollowUpReminderWhereUniqueInput[]
+    disconnect?: FollowUpReminderWhereUniqueInput | FollowUpReminderWhereUniqueInput[]
+    delete?: FollowUpReminderWhereUniqueInput | FollowUpReminderWhereUniqueInput[]
+    connect?: FollowUpReminderWhereUniqueInput | FollowUpReminderWhereUniqueInput[]
+    update?: FollowUpReminderUpdateWithWhereUniqueWithoutDoctorInput | FollowUpReminderUpdateWithWhereUniqueWithoutDoctorInput[]
+    updateMany?: FollowUpReminderUpdateManyWithWhereWithoutDoctorInput | FollowUpReminderUpdateManyWithWhereWithoutDoctorInput[]
+    deleteMany?: FollowUpReminderScalarWhereInput | FollowUpReminderScalarWhereInput[]
+  }
+
   export type AppointmentUncheckedUpdateManyWithoutDoctorNestedInput = {
     create?: XOR<AppointmentCreateWithoutDoctorInput, AppointmentUncheckedCreateWithoutDoctorInput> | AppointmentCreateWithoutDoctorInput[] | AppointmentUncheckedCreateWithoutDoctorInput[]
     connectOrCreate?: AppointmentCreateOrConnectWithoutDoctorInput | AppointmentCreateOrConnectWithoutDoctorInput[]
@@ -11005,6 +14003,20 @@ export namespace Prisma {
     update?: AppointmentUpdateWithWhereUniqueWithoutDoctorInput | AppointmentUpdateWithWhereUniqueWithoutDoctorInput[]
     updateMany?: AppointmentUpdateManyWithWhereWithoutDoctorInput | AppointmentUpdateManyWithWhereWithoutDoctorInput[]
     deleteMany?: AppointmentScalarWhereInput | AppointmentScalarWhereInput[]
+  }
+
+  export type FollowUpReminderUncheckedUpdateManyWithoutDoctorNestedInput = {
+    create?: XOR<FollowUpReminderCreateWithoutDoctorInput, FollowUpReminderUncheckedCreateWithoutDoctorInput> | FollowUpReminderCreateWithoutDoctorInput[] | FollowUpReminderUncheckedCreateWithoutDoctorInput[]
+    connectOrCreate?: FollowUpReminderCreateOrConnectWithoutDoctorInput | FollowUpReminderCreateOrConnectWithoutDoctorInput[]
+    upsert?: FollowUpReminderUpsertWithWhereUniqueWithoutDoctorInput | FollowUpReminderUpsertWithWhereUniqueWithoutDoctorInput[]
+    createMany?: FollowUpReminderCreateManyDoctorInputEnvelope
+    set?: FollowUpReminderWhereUniqueInput | FollowUpReminderWhereUniqueInput[]
+    disconnect?: FollowUpReminderWhereUniqueInput | FollowUpReminderWhereUniqueInput[]
+    delete?: FollowUpReminderWhereUniqueInput | FollowUpReminderWhereUniqueInput[]
+    connect?: FollowUpReminderWhereUniqueInput | FollowUpReminderWhereUniqueInput[]
+    update?: FollowUpReminderUpdateWithWhereUniqueWithoutDoctorInput | FollowUpReminderUpdateWithWhereUniqueWithoutDoctorInput[]
+    updateMany?: FollowUpReminderUpdateManyWithWhereWithoutDoctorInput | FollowUpReminderUpdateManyWithWhereWithoutDoctorInput[]
+    deleteMany?: FollowUpReminderScalarWhereInput | FollowUpReminderScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutPatientInput = {
@@ -11188,6 +14200,34 @@ export namespace Prisma {
   export type AccessPolicyUpdateactionsInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type DoctorCreateNestedOneWithoutFollowUpRemindersInput = {
+    create?: XOR<DoctorCreateWithoutFollowUpRemindersInput, DoctorUncheckedCreateWithoutFollowUpRemindersInput>
+    connectOrCreate?: DoctorCreateOrConnectWithoutFollowUpRemindersInput
+    connect?: DoctorWhereUniqueInput
+  }
+
+  export type DoctorUpdateOneRequiredWithoutFollowUpRemindersNestedInput = {
+    create?: XOR<DoctorCreateWithoutFollowUpRemindersInput, DoctorUncheckedCreateWithoutFollowUpRemindersInput>
+    connectOrCreate?: DoctorCreateOrConnectWithoutFollowUpRemindersInput
+    upsert?: DoctorUpsertWithoutFollowUpRemindersInput
+    connect?: DoctorWhereUniqueInput
+    update?: XOR<XOR<DoctorUpdateToOneWithWhereWithoutFollowUpRemindersInput, DoctorUpdateWithoutFollowUpRemindersInput>, DoctorUncheckedUpdateWithoutFollowUpRemindersInput>
+  }
+
+  export type UserCreateNestedOneWithoutNotificationPrefsInput = {
+    create?: XOR<UserCreateWithoutNotificationPrefsInput, UserUncheckedCreateWithoutNotificationPrefsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutNotificationPrefsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutNotificationPrefsNestedInput = {
+    create?: XOR<UserCreateWithoutNotificationPrefsInput, UserUncheckedCreateWithoutNotificationPrefsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutNotificationPrefsInput
+    upsert?: UserUpsertWithoutNotificationPrefsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNotificationPrefsInput, UserUpdateWithoutNotificationPrefsInput>, UserUncheckedUpdateWithoutNotificationPrefsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -11406,6 +14446,7 @@ export namespace Prisma {
     specialization: string
     licenseNumber: string
     appointments?: AppointmentCreateNestedManyWithoutDoctorInput
+    followUpReminders?: FollowUpReminderCreateNestedManyWithoutDoctorInput
   }
 
   export type DoctorUncheckedCreateWithoutUserInput = {
@@ -11413,6 +14454,7 @@ export namespace Prisma {
     specialization: string
     licenseNumber: string
     appointments?: AppointmentUncheckedCreateNestedManyWithoutDoctorInput
+    followUpReminders?: FollowUpReminderUncheckedCreateNestedManyWithoutDoctorInput
   }
 
   export type DoctorCreateOrConnectWithoutUserInput = {
@@ -11439,6 +14481,33 @@ export namespace Prisma {
   export type PatientCreateOrConnectWithoutUserInput = {
     where: PatientWhereUniqueInput
     create: XOR<PatientCreateWithoutUserInput, PatientUncheckedCreateWithoutUserInput>
+  }
+
+  export type NotificationPreferenceCreateWithoutUserInput = {
+    id?: string
+    emailEnabled?: boolean
+    smsEnabled?: boolean
+    whatsappEnabled?: boolean
+    appointmentReminder?: boolean
+    followUpReminder?: boolean
+    marketingEmails?: boolean
+    updatedAt?: Date | string
+  }
+
+  export type NotificationPreferenceUncheckedCreateWithoutUserInput = {
+    id?: string
+    emailEnabled?: boolean
+    smsEnabled?: boolean
+    whatsappEnabled?: boolean
+    appointmentReminder?: boolean
+    followUpReminder?: boolean
+    marketingEmails?: boolean
+    updatedAt?: Date | string
+  }
+
+  export type NotificationPreferenceCreateOrConnectWithoutUserInput = {
+    where: NotificationPreferenceWhereUniqueInput
+    create: XOR<NotificationPreferenceCreateWithoutUserInput, NotificationPreferenceUncheckedCreateWithoutUserInput>
   }
 
   export type AdminUpsertWithoutUserInput = {
@@ -11478,6 +14547,7 @@ export namespace Prisma {
     specialization?: StringFieldUpdateOperationsInput | string
     licenseNumber?: StringFieldUpdateOperationsInput | string
     appointments?: AppointmentUpdateManyWithoutDoctorNestedInput
+    followUpReminders?: FollowUpReminderUpdateManyWithoutDoctorNestedInput
   }
 
   export type DoctorUncheckedUpdateWithoutUserInput = {
@@ -11485,6 +14555,7 @@ export namespace Prisma {
     specialization?: StringFieldUpdateOperationsInput | string
     licenseNumber?: StringFieldUpdateOperationsInput | string
     appointments?: AppointmentUncheckedUpdateManyWithoutDoctorNestedInput
+    followUpReminders?: FollowUpReminderUncheckedUpdateManyWithoutDoctorNestedInput
   }
 
   export type PatientUpsertWithoutUserInput = {
@@ -11514,6 +14585,39 @@ export namespace Prisma {
     medicalRecords?: MedicalRecordUncheckedUpdateManyWithoutPatientNestedInput
   }
 
+  export type NotificationPreferenceUpsertWithoutUserInput = {
+    update: XOR<NotificationPreferenceUpdateWithoutUserInput, NotificationPreferenceUncheckedUpdateWithoutUserInput>
+    create: XOR<NotificationPreferenceCreateWithoutUserInput, NotificationPreferenceUncheckedCreateWithoutUserInput>
+    where?: NotificationPreferenceWhereInput
+  }
+
+  export type NotificationPreferenceUpdateToOneWithWhereWithoutUserInput = {
+    where?: NotificationPreferenceWhereInput
+    data: XOR<NotificationPreferenceUpdateWithoutUserInput, NotificationPreferenceUncheckedUpdateWithoutUserInput>
+  }
+
+  export type NotificationPreferenceUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    emailEnabled?: BoolFieldUpdateOperationsInput | boolean
+    smsEnabled?: BoolFieldUpdateOperationsInput | boolean
+    whatsappEnabled?: BoolFieldUpdateOperationsInput | boolean
+    appointmentReminder?: BoolFieldUpdateOperationsInput | boolean
+    followUpReminder?: BoolFieldUpdateOperationsInput | boolean
+    marketingEmails?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationPreferenceUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    emailEnabled?: BoolFieldUpdateOperationsInput | boolean
+    smsEnabled?: BoolFieldUpdateOperationsInput | boolean
+    whatsappEnabled?: BoolFieldUpdateOperationsInput | boolean
+    appointmentReminder?: BoolFieldUpdateOperationsInput | boolean
+    followUpReminder?: BoolFieldUpdateOperationsInput | boolean
+    marketingEmails?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateWithoutAdminInput = {
     id?: string
     email: string
@@ -11524,6 +14628,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     doctor?: DoctorCreateNestedOneWithoutUserInput
     patient?: PatientCreateNestedOneWithoutUserInput
+    notificationPrefs?: NotificationPreferenceCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAdminInput = {
@@ -11536,6 +14641,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
     patient?: PatientUncheckedCreateNestedOneWithoutUserInput
+    notificationPrefs?: NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAdminInput = {
@@ -11564,6 +14670,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneWithoutUserNestedInput
     patient?: PatientUpdateOneWithoutUserNestedInput
+    notificationPrefs?: NotificationPreferenceUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAdminInput = {
@@ -11576,6 +14683,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
     patient?: PatientUncheckedUpdateOneWithoutUserNestedInput
+    notificationPrefs?: NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutDoctorInput = {
@@ -11588,6 +14696,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     admin?: AdminCreateNestedOneWithoutUserInput
     patient?: PatientCreateNestedOneWithoutUserInput
+    notificationPrefs?: NotificationPreferenceCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDoctorInput = {
@@ -11600,6 +14709,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     admin?: AdminUncheckedCreateNestedOneWithoutUserInput
     patient?: PatientUncheckedCreateNestedOneWithoutUserInput
+    notificationPrefs?: NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDoctorInput = {
@@ -11645,6 +14755,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type FollowUpReminderCreateWithoutDoctorInput = {
+    id?: string
+    patientName: string
+    patientId: string
+    dueDate: Date | string
+    description: string
+    priority?: string
+    completed?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FollowUpReminderUncheckedCreateWithoutDoctorInput = {
+    id?: string
+    patientName: string
+    patientId: string
+    dueDate: Date | string
+    description: string
+    priority?: string
+    completed?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FollowUpReminderCreateOrConnectWithoutDoctorInput = {
+    where: FollowUpReminderWhereUniqueInput
+    create: XOR<FollowUpReminderCreateWithoutDoctorInput, FollowUpReminderUncheckedCreateWithoutDoctorInput>
+  }
+
+  export type FollowUpReminderCreateManyDoctorInputEnvelope = {
+    data: FollowUpReminderCreateManyDoctorInput | FollowUpReminderCreateManyDoctorInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutDoctorInput = {
     update: XOR<UserUpdateWithoutDoctorInput, UserUncheckedUpdateWithoutDoctorInput>
     create: XOR<UserCreateWithoutDoctorInput, UserUncheckedCreateWithoutDoctorInput>
@@ -11666,6 +14810,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: AdminUpdateOneWithoutUserNestedInput
     patient?: PatientUpdateOneWithoutUserNestedInput
+    notificationPrefs?: NotificationPreferenceUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDoctorInput = {
@@ -11678,6 +14823,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
     patient?: PatientUncheckedUpdateOneWithoutUserNestedInput
+    notificationPrefs?: NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type AppointmentUpsertWithWhereUniqueWithoutDoctorInput = {
@@ -11714,6 +14860,38 @@ export namespace Prisma {
     reminderSent?: BoolFilter<"Appointment"> | boolean
   }
 
+  export type FollowUpReminderUpsertWithWhereUniqueWithoutDoctorInput = {
+    where: FollowUpReminderWhereUniqueInput
+    update: XOR<FollowUpReminderUpdateWithoutDoctorInput, FollowUpReminderUncheckedUpdateWithoutDoctorInput>
+    create: XOR<FollowUpReminderCreateWithoutDoctorInput, FollowUpReminderUncheckedCreateWithoutDoctorInput>
+  }
+
+  export type FollowUpReminderUpdateWithWhereUniqueWithoutDoctorInput = {
+    where: FollowUpReminderWhereUniqueInput
+    data: XOR<FollowUpReminderUpdateWithoutDoctorInput, FollowUpReminderUncheckedUpdateWithoutDoctorInput>
+  }
+
+  export type FollowUpReminderUpdateManyWithWhereWithoutDoctorInput = {
+    where: FollowUpReminderScalarWhereInput
+    data: XOR<FollowUpReminderUpdateManyMutationInput, FollowUpReminderUncheckedUpdateManyWithoutDoctorInput>
+  }
+
+  export type FollowUpReminderScalarWhereInput = {
+    AND?: FollowUpReminderScalarWhereInput | FollowUpReminderScalarWhereInput[]
+    OR?: FollowUpReminderScalarWhereInput[]
+    NOT?: FollowUpReminderScalarWhereInput | FollowUpReminderScalarWhereInput[]
+    id?: StringFilter<"FollowUpReminder"> | string
+    doctorId?: StringFilter<"FollowUpReminder"> | string
+    patientName?: StringFilter<"FollowUpReminder"> | string
+    patientId?: StringFilter<"FollowUpReminder"> | string
+    dueDate?: DateTimeFilter<"FollowUpReminder"> | Date | string
+    description?: StringFilter<"FollowUpReminder"> | string
+    priority?: StringFilter<"FollowUpReminder"> | string
+    completed?: BoolFilter<"FollowUpReminder"> | boolean
+    createdAt?: DateTimeFilter<"FollowUpReminder"> | Date | string
+    updatedAt?: DateTimeFilter<"FollowUpReminder"> | Date | string
+  }
+
   export type UserCreateWithoutPatientInput = {
     id?: string
     email: string
@@ -11724,6 +14902,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     admin?: AdminCreateNestedOneWithoutUserInput
     doctor?: DoctorCreateNestedOneWithoutUserInput
+    notificationPrefs?: NotificationPreferenceCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPatientInput = {
@@ -11736,6 +14915,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     admin?: AdminUncheckedCreateNestedOneWithoutUserInput
     doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
+    notificationPrefs?: NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPatientInput = {
@@ -11832,6 +15012,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: AdminUpdateOneWithoutUserNestedInput
     doctor?: DoctorUpdateOneWithoutUserNestedInput
+    notificationPrefs?: NotificationPreferenceUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPatientInput = {
@@ -11844,6 +15025,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
     doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
+    notificationPrefs?: NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type AppointmentUpsertWithWhereUniqueWithoutPatientInput = {
@@ -11897,6 +15079,7 @@ export namespace Prisma {
     specialization: string
     licenseNumber: string
     user: UserCreateNestedOneWithoutDoctorInput
+    followUpReminders?: FollowUpReminderCreateNestedManyWithoutDoctorInput
   }
 
   export type DoctorUncheckedCreateWithoutAppointmentsInput = {
@@ -11904,6 +15087,7 @@ export namespace Prisma {
     userId: string
     specialization: string
     licenseNumber: string
+    followUpReminders?: FollowUpReminderUncheckedCreateNestedManyWithoutDoctorInput
   }
 
   export type DoctorCreateOrConnectWithoutAppointmentsInput = {
@@ -11948,6 +15132,7 @@ export namespace Prisma {
     specialization?: StringFieldUpdateOperationsInput | string
     licenseNumber?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutDoctorNestedInput
+    followUpReminders?: FollowUpReminderUpdateManyWithoutDoctorNestedInput
   }
 
   export type DoctorUncheckedUpdateWithoutAppointmentsInput = {
@@ -11955,6 +15140,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     specialization?: StringFieldUpdateOperationsInput | string
     licenseNumber?: StringFieldUpdateOperationsInput | string
+    followUpReminders?: FollowUpReminderUncheckedUpdateManyWithoutDoctorNestedInput
   }
 
   export type PatientUpsertWithoutAppointmentsInput = {
@@ -12032,6 +15218,122 @@ export namespace Prisma {
     appointments?: AppointmentUncheckedUpdateManyWithoutPatientNestedInput
   }
 
+  export type DoctorCreateWithoutFollowUpRemindersInput = {
+    id?: string
+    specialization: string
+    licenseNumber: string
+    user: UserCreateNestedOneWithoutDoctorInput
+    appointments?: AppointmentCreateNestedManyWithoutDoctorInput
+  }
+
+  export type DoctorUncheckedCreateWithoutFollowUpRemindersInput = {
+    id?: string
+    userId: string
+    specialization: string
+    licenseNumber: string
+    appointments?: AppointmentUncheckedCreateNestedManyWithoutDoctorInput
+  }
+
+  export type DoctorCreateOrConnectWithoutFollowUpRemindersInput = {
+    where: DoctorWhereUniqueInput
+    create: XOR<DoctorCreateWithoutFollowUpRemindersInput, DoctorUncheckedCreateWithoutFollowUpRemindersInput>
+  }
+
+  export type DoctorUpsertWithoutFollowUpRemindersInput = {
+    update: XOR<DoctorUpdateWithoutFollowUpRemindersInput, DoctorUncheckedUpdateWithoutFollowUpRemindersInput>
+    create: XOR<DoctorCreateWithoutFollowUpRemindersInput, DoctorUncheckedCreateWithoutFollowUpRemindersInput>
+    where?: DoctorWhereInput
+  }
+
+  export type DoctorUpdateToOneWithWhereWithoutFollowUpRemindersInput = {
+    where?: DoctorWhereInput
+    data: XOR<DoctorUpdateWithoutFollowUpRemindersInput, DoctorUncheckedUpdateWithoutFollowUpRemindersInput>
+  }
+
+  export type DoctorUpdateWithoutFollowUpRemindersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    licenseNumber?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutDoctorNestedInput
+    appointments?: AppointmentUpdateManyWithoutDoctorNestedInput
+  }
+
+  export type DoctorUncheckedUpdateWithoutFollowUpRemindersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    specialization?: StringFieldUpdateOperationsInput | string
+    licenseNumber?: StringFieldUpdateOperationsInput | string
+    appointments?: AppointmentUncheckedUpdateManyWithoutDoctorNestedInput
+  }
+
+  export type UserCreateWithoutNotificationPrefsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    admin?: AdminCreateNestedOneWithoutUserInput
+    doctor?: DoctorCreateNestedOneWithoutUserInput
+    patient?: PatientCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutNotificationPrefsInput = {
+    id?: string
+    email: string
+    password: string
+    name: string
+    role?: $Enums.Role
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    admin?: AdminUncheckedCreateNestedOneWithoutUserInput
+    doctor?: DoctorUncheckedCreateNestedOneWithoutUserInput
+    patient?: PatientUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutNotificationPrefsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutNotificationPrefsInput, UserUncheckedCreateWithoutNotificationPrefsInput>
+  }
+
+  export type UserUpsertWithoutNotificationPrefsInput = {
+    update: XOR<UserUpdateWithoutNotificationPrefsInput, UserUncheckedUpdateWithoutNotificationPrefsInput>
+    create: XOR<UserCreateWithoutNotificationPrefsInput, UserUncheckedCreateWithoutNotificationPrefsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutNotificationPrefsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutNotificationPrefsInput, UserUncheckedUpdateWithoutNotificationPrefsInput>
+  }
+
+  export type UserUpdateWithoutNotificationPrefsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    admin?: AdminUpdateOneWithoutUserNestedInput
+    doctor?: DoctorUpdateOneWithoutUserNestedInput
+    patient?: PatientUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutNotificationPrefsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
+    doctor?: DoctorUncheckedUpdateOneWithoutUserNestedInput
+    patient?: PatientUncheckedUpdateOneWithoutUserNestedInput
+  }
+
   export type AppointmentCreateManyDoctorInput = {
     id?: string
     patientId: string
@@ -12044,6 +15346,18 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     reminderSent?: boolean
+  }
+
+  export type FollowUpReminderCreateManyDoctorInput = {
+    id?: string
+    patientName: string
+    patientId: string
+    dueDate: Date | string
+    description: string
+    priority?: string
+    completed?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AppointmentUpdateWithoutDoctorInput = {
@@ -12086,6 +15400,42 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reminderSent?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type FollowUpReminderUpdateWithoutDoctorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    patientName?: StringFieldUpdateOperationsInput | string
+    patientId?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowUpReminderUncheckedUpdateWithoutDoctorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    patientName?: StringFieldUpdateOperationsInput | string
+    patientId?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowUpReminderUncheckedUpdateManyWithoutDoctorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    patientName?: StringFieldUpdateOperationsInput | string
+    patientId?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AppointmentCreateManyPatientInput = {

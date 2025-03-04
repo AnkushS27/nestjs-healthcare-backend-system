@@ -39,6 +39,8 @@ model User {
   admin   Admin?
   doctor  Doctor?
   patient Patient?
+
+  notificationPrefs NotificationPreference?
 }
 
 model Admin {
@@ -49,12 +51,13 @@ model Admin {
 }
 
 model Doctor {
-  id             String        @id @default(uuid())
-  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId         String        @unique
-  specialization String
-  licenseNumber  String        @unique
-  appointments   Appointment[] // Relation to appointments
+  id                String             @id @default(uuid())
+  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            String             @unique
+  specialization    String
+  licenseNumber     String             @unique
+  appointments      Appointment[] // Relation to appointments
+  followUpReminders FollowUpReminder[] // Relation to follow-up reminders
 }
 
 model Patient {
@@ -78,7 +81,7 @@ model Appointment {
   status       AppointmentStatus @default(SCHEDULED)
   type         String            @default("Regular Checkup")
   notes        String?
-  location     String? // For ABAC later
+  location     String?
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
   reminderSent Boolean           @default(false)
@@ -106,4 +109,33 @@ model AccessPolicy {
   actions     String[] // HTTP methods or actions
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
+}
+
+model FollowUpReminder {
+  id          String   @id @default(uuid())
+  doctor      Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  doctorId    String
+  patientName String // Storing name for simplicity
+  patientId   String // Reference without relation
+  dueDate     DateTime
+  description String
+  priority    String   @default("Normal")
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model NotificationPreference {
+  id                  String   @id @default(uuid())
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId              String   @unique
+  emailEnabled        Boolean  @default(true)
+  smsEnabled          Boolean  @default(false)
+  whatsappEnabled     Boolean  @default(false)
+  appointmentReminder Boolean  @default(true)
+  followUpReminder    Boolean  @default(true)
+  marketingEmails     Boolean  @default(false)
+  updatedAt           DateTime @updatedAt
+
+  @@map("notification_preferences")
 }
