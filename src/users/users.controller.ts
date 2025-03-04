@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseInterceptors, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseInterceptors, UseGuards, Version } from '@nestjs/common';
 import { UsersService } from './users.service';import { NoFilesInterceptor } from '@nestjs/platform-express';
 import { CreateUserRequest } from './dto/create-user.request';
 import { User } from 'prisma/generated/main'; 
@@ -14,6 +14,7 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Version('1')
   @Post()
   @UseInterceptors(NoFilesInterceptor())
   @ApiOperation({ summary: 'Create a new user (public endpoint)' })
@@ -24,6 +25,7 @@ export class UsersController {
     return this.usersService.createUser(createUserDto);
   }
 
+  @Version('1')
   @Get('me')
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Get current authenticated user' })

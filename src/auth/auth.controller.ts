@@ -1,5 +1,5 @@
 import { AuthService } from './auth.service';
-import { Controller, Post, Res, UseGuards } from '@nestjs/common';
+import { Controller, Post, Res, UseGuards, Version } from '@nestjs/common';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { CurrentUser } from './current-user.decorator';
 import { Response } from 'express';
@@ -11,6 +11,7 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 export class AuthController {
     constructor(private authService: AuthService) {}
 
+    @Version('1')
     @UseGuards(LocalAuthGuard)
     @Post('login')
     @ApiOperation({ summary: 'Log in a user and set JWT cookie' })

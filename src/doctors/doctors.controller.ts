@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Param, Get, Put, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Param, Get, Put, Delete, UseGuards, Version } from '@nestjs/common';
 import { DoctorsService } from './doctors.service';
 import { CreateDoctorRequest } from './dto/create-doctor.request';
 import { UpdateDoctorRequest } from './dto/update-doctor.request';
@@ -14,6 +14,7 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/s
 export class DoctorsController {
   constructor(private readonly doctorsService: DoctorsService) {}
 
+  @Version('1')
   @Post(':userId')
   @Roles(UserRole.ADMIN)
   @ApiOperation({ summary: 'Create a doctor profile (Admin only)' })
@@ -25,6 +26,7 @@ export class DoctorsController {
     return this.doctorsService.createDoctor(userId, data);
   }
 
+  @Version('1')
   @Get(':id')
   @Roles(UserRole.ADMIN, UserRole.DOCTOR)
   @ApiOperation({ summary: 'Get doctor by ID' })
@@ -34,6 +36,7 @@ export class DoctorsController {
     return this.doctorsService.getDoctorById(id);
   }
 
+  @Version('1')
   @Put(':id')
   @Roles(UserRole.ADMIN)
   @ApiOperation({ summary: 'Update doctor profile (Admin only)' })
@@ -44,6 +47,7 @@ export class DoctorsController {
     return this.doctorsService.updateDoctor(id, data);
   }
 
+  @Version('1')
   @Delete(':id')
   @Roles(UserRole.ADMIN)
   @ApiOperation({ summary: 'Delete doctor profile (Admin only)' })
@@ -51,5 +55,18 @@ export class DoctorsController {
   @ApiResponse({ status: 200, description: 'Doctor deleted' })
   deleteDoctor(@Param('id') id: string) {
     return this.doctorsService.deleteDoctor(id);
+  }
+
+  @Version('1')
+  @Post(':doctorId/follow-ups')
+  @Roles(UserRole.ADMIN, UserRole.DOCTOR)
+  @ApiOperation({ summary: 'Create a follow-up reminder (Admin/Doctor only, requires Authentication cookie, v1)' })
+  @ApiParam({ name: 'doctorId', description: 'Doctor ID' })
+  @ApiBody({ schema: { example: { patientName: 'John Doe', patientId: '<patient-id>', dueDate: '2025-03-10T00:00:00Z', description: 'Check-up' } } })
+  @ApiResponse({ status: 201, description: 'Follow-up reminder created' })
+  @ApiResponse({ status: 403, description: 'Forbidden (role-based)' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  createFollowUpReminder(@Param('doctorId') doctorId: string, @Body() data: any) {
+    return this.doctorsService.createFollowUpReminder(doctorId, data);
   }
 }

@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Put, Delete, Param, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Delete, Param, UseGuards, Version } from '@nestjs/common';
 import { MedicalRecordsService } from './medical-records.service';
 import { CreateMedicalRecordRequest } from './dto/create-medical-record.request';
 import { UpdateMedicalRecordRequest } from './dto/update-medical-record.request';
@@ -14,6 +14,7 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/s
 export class MedicalRecordsController {
   constructor(private readonly medicalRecordsService: MedicalRecordsService) {}
 
+  @Version('1')
   @Post()
   @Roles(UserRole.ADMIN, UserRole.DOCTOR)
   @ApiOperation({ summary: 'Create a medical record (Admin/Doctor only)' })
@@ -25,6 +26,7 @@ export class MedicalRecordsController {
     return this.medicalRecordsService.createMedicalRecord(data);
   }
 
+  @Version('1')
   @Get(':id')
   @Roles(UserRole.ADMIN, UserRole.DOCTOR, UserRole.PATIENT)
   @ApiOperation({ summary: 'Get medical record by ID' })
@@ -36,6 +38,7 @@ export class MedicalRecordsController {
     return this.medicalRecordsService.getMedicalRecordById(id);
   }
 
+  @Version('1')
   @Put(':id')
   @Roles(UserRole.ADMIN, UserRole.DOCTOR)
   @ApiOperation({ summary: 'Update medical record (Admin/Doctor only)' })
@@ -48,6 +51,7 @@ export class MedicalRecordsController {
     return this.medicalRecordsService.updateMedicalRecord(id, data);
   }
 
+  @Version('1')
   @Delete(':id')
   @Roles(UserRole.ADMIN)
   @ApiOperation({ summary: 'Delete medical record (Admin only)' })

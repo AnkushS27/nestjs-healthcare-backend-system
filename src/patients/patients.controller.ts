@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Param, Get, Put, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Param, Get, Put, Delete, UseGuards, Version } from '@nestjs/common';
 import { PatientsService } from './patients.service';
 import { CreatePatientRequest } from './dto/create-patient.request';
 import { UpdatePatientRequest } from './dto/update-patient.request';
@@ -14,6 +14,7 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/s
 export class PatientsController {
   constructor(private readonly patientsService: PatientsService) {}
 
+  @Version('1')
   @Post(':userId')
   @Roles(UserRole.ADMIN)
   @ApiOperation({ summary: 'Create a patient profile (Admin only)' })
@@ -26,6 +27,7 @@ export class PatientsController {
     return this.patientsService.createPatient(userId, data);
   }
 
+  @Version('1')
   @Get(':id')
   @Roles(UserRole.ADMIN, UserRole.DOCTOR, UserRole.PATIENT)
   @ApiOperation({ summary: 'Get patient by ID' })
@@ -37,6 +39,7 @@ export class PatientsController {
     return this.patientsService.getPatientById(id);
   }
 
+  @Version('1')
   @Put(':id')
   @Roles(UserRole.ADMIN, UserRole.PATIENT)
   @ApiOperation({ summary: 'Update patient profile (Admin/Patient only)' })
@@ -49,6 +52,7 @@ export class PatientsController {
     return this.patientsService.updatePatient(id, data);
   }
 
+  @Version('1')
   @Delete(':id')
   @Roles(UserRole.ADMIN)
   @ApiOperation({ summary: 'Delete patient profile (Admin only)' })

@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Put, Delete, Param, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Delete, Param, UseGuards, UseInterceptors, Version } from '@nestjs/common';
 import { AppointmentsService } from './appointments.service';
 import { CreateAppointmentRequest } from './dto/create-appointment.request';
 import { UpdateAppointmentRequest } from './dto/update-appointment.request';
@@ -18,6 +18,7 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/s
 export class AppointmentsController {
   constructor(private readonly appointmentsService: AppointmentsService) {}
 
+  @Version('1')
   @Post()
   @Roles(UserRole.ADMIN, UserRole.DOCTOR)
   @AuditActionDecorator('CREATE')
@@ -29,6 +30,7 @@ export class AppointmentsController {
     return this.appointmentsService.createAppointment(data);
   }
 
+  @Version('1')
   @Get(':id')
   @Roles(UserRole.ADMIN, UserRole.DOCTOR, UserRole.PATIENT)
   @ApiOperation({ summary: 'Get appointment by ID' })
@@ -38,6 +40,7 @@ export class AppointmentsController {
     return this.appointmentsService.getAppointmentById(id);
   }
 
+  @Version('1')
   @Put(':id')
   @Roles(UserRole.ADMIN, UserRole.DOCTOR)
   @AuditActionDecorator('UPDATE')
@@ -49,6 +52,7 @@ export class AppointmentsController {
     return this.appointmentsService.updateAppointment(id, data);
   }
 
+  @Version('1')
   @Delete(':id')
   @Roles(UserRole.ADMIN)
   @AuditActionDecorator('DELETE')

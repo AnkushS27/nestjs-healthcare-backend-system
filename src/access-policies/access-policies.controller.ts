@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Put, Delete, Param, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Delete, Param, UseGuards, Version } from '@nestjs/common';
 import { AccessPoliciesService } from './access-policies.service';
 import { CreateAccessPolicyRequest } from './dto/create-access-policy.request';
 import { UpdateAccessPolicyRequest } from './dto/update-access-policy.request';
@@ -14,6 +14,7 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/s
 export class AccessPoliciesController {
   constructor(private readonly accessPoliciesService: AccessPoliciesService) {}
 
+  @Version('1')
   @Post()
   @Roles(UserRole.ADMIN)
   @ApiOperation({ summary: 'Create an ABAC policy (Admin only)' })
@@ -25,6 +26,7 @@ export class AccessPoliciesController {
     return this.accessPoliciesService.createAccessPolicy(data);
   }
 
+  @Version('1')
   @Get()
   @Roles(UserRole.ADMIN)
   @ApiOperation({ summary: 'Get all ABAC policies (Admin only)' })
@@ -35,6 +37,7 @@ export class AccessPoliciesController {
     return this.accessPoliciesService.getAllAccessPolicies();
   }
 
+  @Version('1')
   @Get(':id')
   @Roles(UserRole.ADMIN)
   @ApiOperation({ summary: 'Get ABAC policy by ID (Admin only)' })
@@ -46,6 +49,7 @@ export class AccessPoliciesController {
     return this.accessPoliciesService.getAccessPolicyById(id);
   }
 
+  @Version('1')
   @Put(':id')
   @Roles(UserRole.ADMIN)
   @ApiOperation({ summary: 'Update ABAC policy (Admin only)' })
@@ -58,6 +62,7 @@ export class AccessPoliciesController {
     return this.accessPoliciesService.updateAccessPolicy(id, data);
   }
 
+  @Version('1')
   @Delete(':id')
   @Roles(UserRole.ADMIN)
   @ApiOperation({ summary: 'Delete ABAC policy (Admin only)' })
