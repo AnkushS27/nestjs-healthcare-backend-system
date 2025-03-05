@@ -1,10 +1,51 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { LoggerModule } from 'nestjs-pino';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { DoctorsModule } from './doctors/doctors.module';
+import { PatientsModule } from './patients/patients.module';
+import { AppointmentsModule } from './appointments/appointments.module';
+import { MedicalRecordsModule } from './medical-records/medical-records.module';
+import { AccessPoliciesModule } from './access-policies/access-policies.module';
+import { LoggingModule } from './logging/logging.module';
+import { SchedulerModule } from './scheduler/scheduler.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    LoggerModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => {
+        const isProduction = configService.get('NODE_ENV') === 'production';
+
+        return {
+          pinoHttp: {
+            transport: isProduction
+              ? undefined
+              : {
+                  target: 'pino-pretty',
+                  options: {
+                    singleLine: true,
+                  },
+                },
+            level: isProduction ? 'info' : 'debug',
+          },
+        };
+      },
+      inject: [ConfigService],
+    }),
+    ConfigModule.forRoot(),
+    UsersModule,
+    AuthModule,
+    DoctorsModule,
+    PatientsModule,
+    AppointmentsModule,
+    MedicalRecordsModule,
+    AccessPoliciesModule,
+    LoggingModule,
+    SchedulerModule,
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

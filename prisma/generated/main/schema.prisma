@@ -1,0 +1,141 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/main"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  DOCTOR
+  PATIENT
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+  RESCHEDULED
+}
+
+enum PolicyEffect {
+  ALLOW
+  DENY
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(PATIENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Role-specific profiles
+  admin   Admin?
+  doctor  Doctor?
+  patient Patient?
+
+  notificationPrefs NotificationPreference?
+}
+
+model Admin {
+  id         String @id @default(uuid())
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String @unique
+  department String
+}
+
+model Doctor {
+  id                String             @id @default(uuid())
+  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            String             @unique
+  specialization    String
+  licenseNumber     String             @unique
+  appointments      Appointment[] // Relation to appointments
+  followUpReminders FollowUpReminder[] // Relation to follow-up reminders
+}
+
+model Patient {
+  id               String          @id @default(uuid())
+  user             User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId           String          @unique
+  dateOfBirth      DateTime
+  emergencyContact String?
+  appointments     Appointment[] // Relation to appointments
+  medicalRecords   MedicalRecord[] // Relation to medical records
+}
+
+model Appointment {
+  id           String            @id @default(uuid())
+  doctor       Doctor            @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  doctorId     String
+  patient      Patient           @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  patientId    String
+  scheduledAt  DateTime
+  endTime      DateTime
+  status       AppointmentStatus @default(SCHEDULED)
+  type         String            @default("Regular Checkup")
+  notes        String?
+  location     String?
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  reminderSent Boolean           @default(false)
+}
+
+model MedicalRecord {
+  id          String   @id @default(uuid())
+  patient     Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  patientId   String
+  diagnosis   String
+  treatment   String
+  notes       String?
+  attachments String[] // URLs to attachments
+  recordDate  DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AccessPolicy {
+  id          String       @id @default(uuid())
+  name        String       @unique
+  description String
+  attributes  Json // JSON structure with attribute conditions
+  effect      PolicyEffect @default(ALLOW)
+  resources   String[] // API paths or resources this policy applies to
+  actions     String[] // HTTP methods or actions
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model FollowUpReminder {
+  id          String   @id @default(uuid())
+  doctor      Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  doctorId    String
+  patientName String // Storing name for simplicity
+  patientId   String // Reference without relation
+  dueDate     DateTime
+  description String
+  priority    String   @default("Normal")
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model NotificationPreference {
+  id                  String   @id @default(uuid())
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId              String   @unique
+  emailEnabled        Boolean  @default(true)
+  smsEnabled          Boolean  @default(false)
+  whatsappEnabled     Boolean  @default(false)
+  appointmentReminder Boolean  @default(true)
+  followUpReminder    Boolean  @default(true)
+  marketingEmails     Boolean  @default(false)
+  updatedAt           DateTime @updatedAt
+
+  @@map("notification_preferences")
+}

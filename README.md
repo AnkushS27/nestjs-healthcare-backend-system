@@ -1,99 +1,245 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Healthcare API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A robust, secure, and scalable RESTful API built with NestJS for managing healthcare operations, including user management, doctor and patient profiles, appointments, medical records, access control, logging, auditing, and scheduled tasks.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This project implements:
+- **Role-Based Access Control (RBAC)**
+- **Attribute-Based Access Control (ABAC)**
+- **Comprehensive logging and auditing**
+- **Basic API versioning**
+- **Detailed Swagger documentation**
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 📌 Table of Contents
+- [Features](#features)
+- [Setup Instructions](#setup-instructions)
+- [File Structure](#file-structure)
+- [API Documentation](#api-documentation)
+- [Key Points to Consider](#key-points-to-consider)
+- [Future Enhancements](#future-enhancements)
 
-## Project setup
+---
 
+## 🚀 Features
+- **User Management**: Register and authenticate users with roles (`ADMIN`, `DOCTOR`, `PATIENT`).
+- **Role-Specific Profiles**: Separate models for `Admin`, `Doctor`, and `Patient` linked to `User`.
+- **Authentication**: JWT-based authentication via cookies (`Authentication` cookie).
+- **RBAC**: Role-based guards restrict endpoint access (e.g., only `ADMIN` can delete records).
+- **ABAC**: Attribute-based access control (e.g., time or location restrictions on appointments).
+- **Appointments**: CRUD operations with daily patient reminders via cron jobs.
+- **Medical Records**: Manage patient medical records with secure access.
+- **Access Policies**: Define and enforce ABAC policies.
+- **Logging & Auditing**: Detailed API, error, and audit logs stored in a separate database.
+- **Scheduled Tasks**: Daily appointment reminders and weekly doctor follow-up notifications.
+- **API Versioning**: URI-based versioning (e.g., `/v1/` prefix).
+- **Swagger Documentation**: Interactive API docs at `/api`.
+
+---
+
+## 🛠️ Setup Instructions
+
+### 📋 Prerequisites
+- **Node.js**: v16.x or higher
+- **PostgreSQL**: Two databases (main and logs)
+- **pnpm**: Package manager
+
+### 🔧 Installation
+
+#### 1️⃣ Clone the Repository:
 ```bash
-$ pnpm install
+git clone https://github.com/AnkushS27/nestjs-healthcare-backend-system.git
+cd nestjs-healthcare-backend-system
 ```
 
-## Compile and run the project
-
+#### 2️⃣ Install Dependencies:
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+pnpm install
 ```
 
-## Run tests
+#### 3️⃣ Configure Environment Variables:
+Create a `.env` file in the root directory based on `.env.example` (create one if not present):
 
-```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+```ini
+PORT=3000
+DATABASE_URL=postgresql://user:password@localhost:5432/healthcare_db?schema=public  # main database url
+LOGS_DATABASE_URL=postgresql://user:password@localhost:5432/logs_db?schema=public   # logs database url
+JWT_SECRET=your-secret-key
+JWT_EXPIRATION=3600000
 ```
 
-## Deployment
+#### 4️⃣ Set Up Databases:
+Create two PostgreSQL databases:  
+- `healthcare_db` (main)  
+- `logs_db` (logs)  
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+Run migrations for both schemas:
 ```bash
-$ pnpm install -g mau
-$ mau deploy
+pnpx prisma migrate dev --name init --schema=prisma/main.schema.prisma
+pnpx prisma migrate dev --name init --schema=prisma/logs.schema.prisma
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Generate Prisma clients:
+```bash
+pnpx prisma generate --schema=prisma/main.schema.prisma
+pnpx prisma generate --schema=prisma/logs.schema.prisma
+```
 
-## Resources
+#### 5️⃣ Run the Application:
+🛠 Development mode:
+```bash
+npm run start:dev
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+🚀 Production mode:
+```bash
+npm run build
+npm run start:prod
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+#### 6️⃣ Access the API:
+- `Base URL`: http://localhost:3000/v1/
+- `Swagger UI`: http://localhost:3000/api
 
-## Support
+## 📂 File Structure
+```bash
+nestjs-healthcare-backend-system/
+├── prisma/                       
+│   ├── generated/               
+│   │   ├── main/               
+│   │   └── logs/         
+│   ├── migrations/      
+│   ├── main.schema.prisma
+│   └── logs.schema.prisma    
+├── src/   
+│   ├── prisma/ 
+│   │   ├── main-prisma.service.ts  
+│   │   ├── logs-prisma.service.ts  
+│   │   └── prisma.module.ts                      
+│   ├── auth/                   
+│   ├── users/                  
+│   ├── doctors/                
+│   ├── patients/               
+│   ├── appointments/           
+│   ├── medical-records/        
+│   ├── access-policies/        
+│   ├── logging/                
+│   ├── scheduler/              
+│   ├── app.module.ts           
+│   └── main.ts                 
+├── .env                        
+├── package.json                
+└── README.md                   
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+---
 
-## Stay in touch
+## 📖 API Documentation
+API endpoints are versioned with a /v1/ prefix and documented via Swagger at http://localhost:3000/api.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### 🔑 Authentication
+#### Login
+- **Endpoint:** `POST /v1/auth/login`
+- **Body:**
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "password123"
+  }
+  ```
+- **Response**: Sets `Authentication` cookie with JWT.
+- **Usage**: Include Cookie: Authentication=<JWT_TOKEN> in headers for protected endpoints.
 
-## License
+#### API Endpoints Overview
+#### Users
+- **POST** `/v1/users` - Create a user _(public)_  
+- **GET** `/v1/users/me` - Get current user _(authenticated)_  
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+#### Doctors
+- **POST** `/v1/doctors/:userId` - Create doctor _(Admin)_  
+- **GET** `/v1/doctors/:id` - Get doctor _(Admin, Doctor)_  
+- **PUT** `/v1/doctors/:id` - Update doctor _(Admin)_  
+- **DELETE** `/v1/doctors/:id` - Delete doctor _(Admin)_  
+- **POST** `/v1/doctors/:doctorId/follow-ups` - Create follow-up reminder _(Admin, Doctor)_  
+
+#### Patients
+- **POST** `/v1/patients/:userId` - Create patient _(Admin)_  
+- **GET** `/v1/patients/:id` - Get patient _(Admin, Doctor, Patient)_  
+- **PUT** `/v1/patients/:id` - Update patient _(Admin, Patient)_  
+- **DELETE** `/v1/patients/:id` - Delete patient _(Admin)_  
+
+#### Appointments
+- **POST** `/v1/appointments` - Create appointment _(Admin, Doctor)_  
+- **GET** `/v1/appointments/:id` - Get appointment _(Admin, Doctor, Patient)_  
+- **PUT** `/v1/appointments/:id` - Update appointment _(Admin, Doctor)_  
+- **DELETE** `/v1/appointments/:id` - Delete appointment _(Admin)_  
+
+##### Medical Records
+- **POST** `/v1/medical-records` - Create record _(Admin, Doctor)_  
+- **GET** `/v1/medical-records/:id` - Get record _(Admin, Doctor, Patient)_  
+- **PUT** `/v1/medical-records/:id` - Update record _(Admin, Doctor)_  
+- **DELETE** `/v1/medical-records/:id` - Delete record _(Admin)_  
+
+### Access Policies (ABAC)
+- **POST** `/v1/access-policies` - Create policy _(Admin)_  
+- **GET** `/v1/access-policies` - Get all policies _(Admin)_  
+- **GET** `/v1/access-policies/:id` - Get policy _(Admin)_  
+- **PUT** `/v1/access-policies/:id` - Update policy _(Admin)_  
+- **DELETE** `/v1/access-policies/:id` - Delete policy _(Admin)_  
+
+---
+
+## Swagger UI
+- **Access:** [http://localhost:3000/api](http://localhost:3000/api)  
+
+### Features:
+- Detailed endpoint descriptions  
+- Request/response schemas via DTOs  
+- Authentication instructions in the description  
+
+---
+
+## Key Points to Consider
+
+### Authentication
+- Use the **Authentication cookie** set by `/v1/auth/login`  
+- **No Bearer token support**  
+
+### Versioning
+- All endpoints are under `/v1/`  
+- Future versions (e.g., `/v2/`) can be added with `@Version('2')`  
+
+### Error Handling
+Specific errors are mapped to HTTP status codes:
+- **400** - Bad request _(e.g., invalid IDs)_  
+- **404** - Not found _(e.g., missing resources)_  
+- **409** - Conflict _(e.g., duplicate entries)_  
+- **422** - Unprocessable entity _(e.g., duplicate email)_  
+- **500** - Internal server error _(rare, logged)_  
+
+Check `error_logs` for detailed debugging.
+
+### Logging
+- API requests, errors, and audits are logged in the `logs` database.  
+
+### Cron Jobs
+- Run **daily at 8 AM** _(patient reminders)_  
+- Run **every weekday** _(doctor follow-ups)_  
+- Test by mocking with `*/10 * * * * *`  
+
+### Database
+- Two separate databases: **main** and **logs**  
+- Require distinct **Prisma** configurations  
+
+### Security
+- **RBAC** and **ABAC** enforce access control  
+- Ensure `JWT_SECRET` is secure
+
+---
+
+## Future Enhancements
+- Notification System: Implement actual notification delivery (e.g., email, SMS, WhatsApp) using NotificationPreference.
+- API v2: Introduce breaking changes under /v2/ (e.g., enhanced schemas).
+- Rate Limiting: Add throttling to prevent abuse.
+- Testing: Unit and integration tests for services and endpoints.
+- Performance: Cache ABAC policies for faster evaluation.
