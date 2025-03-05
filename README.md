@@ -88,13 +88,13 @@ pnpx prisma generate --schema=prisma/logs.schema.prisma
 #### 5️⃣ Run the Application:
 🛠 Development mode:
 ```bash
-npm run start:dev
+pnpm run start:dev
 ```
 
 🚀 Production mode:
 ```bash
-npm run build
-npm run start:prod
+pnpm run build
+pnpm run start:prod
 ```
 
 #### 6️⃣ Access the API:
