@@ -1,4 +1,4 @@
-import { Injectable, UnprocessableEntityException } from '@nestjs/common';
+import { Injectable, HttpStatus, HttpException, UnprocessableEntityException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { CreateUserRequest } from './dto/create-user.request';
 import { MainPrismaService } from '../prisma/main-prisma.service';
@@ -39,22 +39,29 @@ export class UsersService {
       // Return the created user (no role-specific profile creation here)
       return user;
     } catch (err) {
-      if (err.code === 'P2002') {
+      if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
         throw new UnprocessableEntityException('Email already exists');
       }
-      throw err;
+      throw new HttpException('Failed to create user', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
   async getUser(filter: Prisma.UserWhereUniqueInput) {
-    return this.prismaService.user.findUniqueOrThrow({
-      where: filter,
-      include: {
-        admin: true,
-        doctor: true,
-        patient: true,
-        notificationPrefs: true,
-      },
-    });
+    try {
+      return await this.prismaService.user.findUniqueOrThrow({
+        where: filter,
+        include: {
+          admin: true,
+          doctor: true,
+          patient: true,
+          notificationPrefs: true,
+        },
+      });
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
+        throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+      }
+      throw new HttpException('Failed to fetch user', HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 }
