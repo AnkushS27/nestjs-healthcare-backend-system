@@ -108,14 +108,14 @@ nestjs-healthcare-backend-system/
 │   ├── generated/               
 │   │   ├── main/               
 │   │   └── logs/         
-|   ├── migrations/      
+│   ├── migrations/      
 │   ├── main.schema.prisma
 │   └── logs.schema.prisma    
 ├── src/   
-|   ├── prisma/ 
-|   |   ├── main-prisma.service.ts  
-│   |   ├── logs-prisma.service.ts  
-│   |   └── prisma.module.ts                      
+│   ├── prisma/ 
+│   │   ├── main-prisma.service.ts  
+│   │   ├── logs-prisma.service.ts  
+│   │   └── prisma.module.ts                      
 │   ├── auth/                   
 │   ├── users/                  
 │   ├── doctors/                
